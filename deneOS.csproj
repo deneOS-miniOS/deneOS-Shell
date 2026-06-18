@@ -39,14 +39,11 @@ Windows? Nah. Mejor deneOS. No es solo una "skin". Es una super-shell.</Descript
 
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="dosu" Version="1.0.0" />
+    <PackageReference Include="dosu.System" Version="1.0.0" />
+    <PackageReference Include="dosu.UI" Version="1.0.0" />
     <PackageReference Include="ksemenenko.ColorThief" Version="1.1.1.4" />
     <PackageReference Include="NAudio" Version="2.2.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\source\repos\deneOS\dosu.System\dosu.System.csproj" />
-    <ProjectReference Include="..\..\source\repos\deneOS\dosu.UI\dosu.UI.csproj" />
-    <ProjectReference Include="..\..\source\repos\deneOS\sdosu\dosu.csproj" />
   </ItemGroup>
 
   <ItemGroup>
