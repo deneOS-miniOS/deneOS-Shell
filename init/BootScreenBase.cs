@@ -252,6 +252,10 @@ namespace deneOS.init
             }
         }
 
+        int b2i(bool a)
+        {
+            return a ? 1 : 0;
+        }
         /// <summary>
         /// Comportamiento cuando faltan archivos críticos.
         /// BootScreen muestra error y cierra; BootScreenVertical los crea.
@@ -260,7 +264,7 @@ namespace deneOS.init
         {
             Console.WriteLine("[CRITICAL] Critical files are missing.");
             MessageBox.Show(
-                "Critical files are missing. Please fix the installation or contact support. Visit https://repoficialx.xyz/deneOS/help for assistance.",
+                "Critical files are missing. Please fix the installation or contact support. Visit https://repoficialx.xyz/deneOS/help for assistance. Error code: CRF_MSS_"+b2i(hasFolders)+b2i(hasCore),
                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             Process.Start(new ProcessStartInfo("explorer.exe") { UseShellExecute = true });
             Application.Exit();

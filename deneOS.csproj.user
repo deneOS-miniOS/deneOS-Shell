@@ -7,6 +7,12 @@
     <Compile Update="BottomBar.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="DesktopBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="init\BootScreenBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="init\login.cs">
       <SubType>Form</SubType>
     </Compile>
