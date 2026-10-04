@@ -39,10 +39,16 @@ namespace deneOS
 
             Color bgColor = globaldata.isImageLoaded ? ColorTranslator.FromHtml(globaldata.wallpaperPredominantColorHex) : Color.Black;
             if (bgColor.GetBrightness() > 0.6f)
-                bgColor = Color.FromArgb(30, 30, 30);
+            {
+                bgColor = Color.FromArgb(
+                    (int)(bgColor.R * 0.4f),
+                    (int)(bgColor.G * 0.4f),
+                    (int)(bgColor.B * 0.4f)
+                );
+            }
             this.BackColor = bgColor;
             this.ForeColor = Color.White;
-            panel2.BackColor = Color.FromArgb(24, 24, 24);
+            panel2.BackColor = bgColor;
             panel2.BringToFront();
 
             dosu.UI.Scaling.ScaleForm(this);
