@@ -82,16 +82,18 @@
             label18.TabIndex = 1;
             label18.Text = "deneStore";
             label18.TextAlign = ContentAlignment.TopCenter;
+            label18.Click += label18_Click;
             // 
             // pictureBox2
             // 
-            pictureBox2.Image = Properties.Resources.denestore;
+            pictureBox2.Image = Properties.Resources.developer;
             pictureBox2.Location = new Point(3, 3);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(69, 60);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 0;
             pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
             // 
             // tableLayoutPanel1
             // 
