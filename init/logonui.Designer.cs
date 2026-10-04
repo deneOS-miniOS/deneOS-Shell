@@ -41,30 +41,32 @@
             // txt1
             // 
             txt1.AutoSize = true;
+            txt1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             txt1.BackColor = Color.Transparent;
-            txt1.Dock = DockStyle.Fill;
+            txt1.Dock = DockStyle.None;
             txt1.Font = new Font("Segoe UI Variable Display", 72F);
             txt1.ForeColor = SystemColors.Control;
-            txt1.Location = new Point(3, 378);
+            txt1.Location = new Point(3, 324);
             txt1.Name = "txt1";
-            txt1.Size = new Size(762, 102);
+            txt1.Size = new Size(762, 108);
             txt1.TabIndex = 0;
             txt1.Text = "TXT1";
-            txt1.TextAlign = ContentAlignment.MiddleLeft;
+            txt1.TextAlign = ContentAlignment.BottomLeft;
             // 
             // txt2
             // 
             txt2.AutoSize = true;
+            txt2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             txt2.BackColor = Color.Transparent;
-            txt2.Dock = DockStyle.Fill;
+            txt2.Dock = DockStyle.None;
             txt2.Font = new Font("Segoe UI Variable Display", 38F);
             txt2.ForeColor = SystemColors.Control;
-            txt2.Location = new Point(3, 480);
+            txt2.Location = new Point(3, 432);
             txt2.Name = "txt2";
-            txt2.Size = new Size(762, 60);
+            txt2.Size = new Size(762, 108);
             txt2.TabIndex = 1;
             txt2.Text = "TXT2";
-            txt2.TextAlign = ContentAlignment.MiddleLeft;
+            txt2.Click += txt2_Click;
             // 
             // MinuteUpdate
             // 
@@ -75,7 +77,7 @@
             // button2
             // 
             button2.BackColor = Color.Transparent;
-            button2.Dock = DockStyle.Fill;
+            button2.Dock = DockStyle.Bottom;
             button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Segoe MDL2 Assets", 32F, FontStyle.Bold);
             button2.ForeColor = Color.DarkMagenta;
@@ -89,7 +91,7 @@
             // 
             // button1
             // 
-            button1.Dock = DockStyle.Fill;
+            button1.Dock = DockStyle.Bottom;
             button1.Location = new Point(771, 483);
             button1.Name = "button1";
             button1.Size = new Size(109, 54);
@@ -108,8 +110,6 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 8F));
             tableLayoutPanel1.Controls.Add(button2, 2, 2);
             tableLayoutPanel1.Controls.Add(button1, 1, 2);
-            tableLayoutPanel1.Controls.Add(txt1, 0, 1);
-            tableLayoutPanel1.Controls.Add(txt2, 0, 2);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -122,13 +122,14 @@
             // 
             // logonui
             // 
-            AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.None;
             BackColor = SystemColors.Control;
             BackgroundImage = Properties.Resources.FY25_Pride2025__BKG_02_Desktop;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(960, 540);
             Controls.Add(tableLayoutPanel1);
+            Controls.Add(txt2);
+            Controls.Add(txt1);
             Font = new Font("Segoe UI", 24F);
             FormBorderStyle = FormBorderStyle.None;
             Name = "logonui";

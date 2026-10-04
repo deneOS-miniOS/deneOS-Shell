@@ -29,7 +29,41 @@ namespace deneOS.init
             txt2.Font = new Font("Segoe UI Variable Display", 18f * _dpiScale);
             button2.Font = new Font("Segoe MDL2 Assets", 16f * _dpiScale, FontStyle.Bold);
 
+            // La fecha y la hora no deben depender de las filas porcentuales del
+            // TableLayoutPanel: esas filas cambian de forma distinta según el DPI.
+            Resize += (_, _) => UpdateClockPosition();
+            Shown += (_, _) =>
+            {
+                UpdateClockPosition();
+                txt2.BringToFront();
+                txt1.BringToFront();
+            };
+
+            // No esperar al primer Tick del temporizador para mostrar el reloj.
+            Time_Stuff();
+            Date_Stuff();
+            UpdateClockPosition();
+
             this.Show();
+        }
+
+        private void UpdateClockPosition()
+        {
+            if (txt1 is null || txt2 is null || ClientSize.Width <= 0 || ClientSize.Height <= 0)
+                return;
+
+            int margin = (int)(10f * _dpiScale + 0.5f);
+            if (margin < 10) margin = 10;
+            int gap = (int)(2f * _dpiScale + 0.5f);
+
+            // Ambas etiquetas quedan ancladas a la esquina inferior izquierda,
+            // independientemente del tamaño del formulario o del escalado.
+            txt2.Location = new Point(margin, ClientSize.Height - margin - txt2.Height);
+            txt1.Location = new Point(margin, txt2.Top - gap - txt1.Height);
+            txt2.Visible = true;
+            txt1.Visible = true;
+            txt2.BringToFront();
+            txt1.BringToFront();
         }
         protected override void OnFormClosed(FormClosedEventArgs e)
         {
@@ -218,7 +252,7 @@ namespace deneOS.init
                     "12" => "December",
                     _ => "???"
                 },
-                _ => mm2 switch  
+                _ => mm2 switch
                 {
                     "01" => "Enero",
                     "02" => "Febrero",
@@ -315,7 +349,12 @@ namespace deneOS.init
         {
             Process.Start("explorer.exe");
             Application.Exit();
-            
+
+        }
+
+        private void txt2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
