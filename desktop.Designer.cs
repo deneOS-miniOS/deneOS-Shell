@@ -49,7 +49,7 @@
             label15.RightToLeft = RightToLeft.Yes;
             label15.Size = new Size(954, 54);
             label15.TabIndex = 2;
-            label15.Text = "deneOS version 0.2b\r\nTest mode";
+            label15.Text = "deneOS version 0.4b\r\nTest mode";
             // 
             // flowLayoutPanel2
             // 

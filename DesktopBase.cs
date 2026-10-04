@@ -13,7 +13,7 @@ namespace deneOS
     /// y <see cref="HomeScreen"/> (vertical).
     /// Gestiona wallpaper, extracción del color dominante e iconos de escritorio.
     /// </summary>
-    public abstract class DesktopBase : Form
+    public class DesktopBase : Form
     {
         private const string RegPath       = @"Software\deneOS\desktop";
         private const string ShowIconsKey  = "showIcons";
@@ -22,7 +22,10 @@ namespace deneOS
         // ── Propiedades que cada subclase expone ─────────────────────────
 
         /// <summary>Panel donde se cargan los accesos directos.</summary>
-        protected abstract FlowLayoutPanel IconsPanel { get; }
+        // El diseñador de WinForms necesita poder crear la clase base. Las
+        // ventanas concretas proporcionan el panel mediante override.
+        protected virtual FlowLayoutPanel IconsPanel =>
+            throw new InvalidOperationException("La ventana debe proporcionar su panel de iconos.");
 
         // ── Lógica compartida de carga ───────────────────────────────────
 

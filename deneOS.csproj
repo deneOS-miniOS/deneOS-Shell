@@ -12,12 +12,12 @@
 	<ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
     <PlatformTarget>x64</PlatformTarget>
 	  <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-    <Version>0.3.1</Version>
-    <Authors>Rayciffon@alu.edu.gva.es</Authors>
+    <Version>0.4.1</Version>
+    <Authors>rayciffon@repoficialx.onmicrosoft.com</Authors>
     <Company>repoficialx</Company>
     <Description>deneOS.
 Windows? Nah. Mejor deneOS. No es solo una "skin". Es una super-shell.</Description>
-    <Copyright>©2025 repoficialx. MIT license</Copyright>
+    <Copyright>©2026 repoficialx. MIT license</Copyright>
     <PackageProjectUrl>https://repoficialx.xyz/deneOS</PackageProjectUrl>
 	  <PublishSingleFile>true</PublishSingleFile>
 	  <SelfContained>true</SelfContained>
