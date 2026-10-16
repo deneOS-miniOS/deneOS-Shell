@@ -18,9 +18,9 @@ namespace deneOS.init
 {
     public partial class BootScreenVertical : BootScreenBase
     {
-        protected override Control LogoControl    => pictureBox1;
-        protected override Label   SpinnerLabel   => label1;
-        protected override Timer   TransitionTimer => timer1;
+        protected  Control LogoControl    => pictureBox1;
+        protected  Label   SpinnerLabel   => label1;
+        protected  Timer   TransitionTimer => timer1;
         protected override void PositionLogo()
         {
             // En vertical el logo ocupa toda la pantalla (Dock = Fill en el Designer)

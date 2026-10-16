@@ -305,6 +305,7 @@ namespace deneOS.init
         /// <param name="e"></param>
         private void logonui_KeyDown(object sender, KeyEventArgs e)
         {
+            Hide();
             if (e.KeyCode == Keys.Enter)
             {
                 e.SuppressKeyPress = true; // Evita que Enter llegue al botón

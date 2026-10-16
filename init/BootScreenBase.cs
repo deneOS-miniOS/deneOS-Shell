@@ -17,7 +17,7 @@ namespace deneOS.init
     /// Contiene toda la lógica de arranque; las subclases solo definen
     /// el control de logo y su posicionamiento proporcional.
     /// </summary>
-    public abstract partial class BootScreenBase : Form
+    public  partial class BootScreenBase : Form
     {
         // ── Animación de boot ────────────────────────────────────────────
         private static readonly string[] BootAnillas =
@@ -45,19 +45,19 @@ namespace deneOS.init
         // ── Propiedades abstractas que cada subclase define ──────────────
 
         /// <summary>Control que muestra el logo (PictureBox o similar).</summary>
-        protected abstract Control LogoControl { get; }
+        protected  Control LogoControl { get; }
 
         /// <summary>Control que muestra la animación de spinning.</summary>
-        protected abstract Label SpinnerLabel { get; }
+        protected  Label SpinnerLabel { get; }
 
         /// <summary>Timer del Designer que dispara el paso a logonui/OOBE.</summary>
-        protected abstract Timer TransitionTimer { get; }
+        protected  Timer TransitionTimer { get; }
 
         /// <summary>
         /// Posiciona y dimensiona LogoControl en pantalla.
         /// Cada subclase implementa su propia disposición.
         /// </summary>
-        protected abstract void PositionLogo();
+        protected virtual void PositionLogo(){}
 
         // ── Constructor compartido ───────────────────────────────────────
         private HeartbeatClient heartbeat = new();
@@ -315,6 +315,7 @@ namespace deneOS.init
 
                 this.BeginInvoke(new Action(() =>
                 {
+                    this.Hide();
                     if (validUser)
                     {
                         Console.WriteLine($"[INFO] User: {user.Username} → logonui");

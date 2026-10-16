@@ -18,9 +18,9 @@ namespace deneOS.init
 {
     public partial class BootScreen : BootScreenBase
     {
-        protected override Control LogoControl  => logo;
-        protected override Label   SpinnerLabel => label1;
-        protected override Timer   TransitionTimer => timer1;
+        protected  Control LogoControl  => logo;
+        protected  Label   SpinnerLabel => label1;
+        protected  Timer   TransitionTimer => timer1;
         protected override void PositionLogo()
         {
             // Proporciones respecto a 1920×1080 (diseño original)

@@ -174,7 +174,7 @@ namespace deneOS.init
                 lggng.Visible = true;
                 lggng.Text = (string)T("lggng");
                 pictureBox1.Image = Properties.Resources.loading;
-
+                System.Threading.Thread.Sleep(200);
                 Hide();
                 if (ornMgmt.GetOrientation() == Orientation.Horizontal)
                 {
