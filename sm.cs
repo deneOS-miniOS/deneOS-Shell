@@ -204,12 +204,12 @@ namespace deneOS
 
         private void panel4_Click(object sender, EventArgs e)
         {
-            Process.Start(@"C:\DENEOS\systemApps\deneNavi\deneNavi.exe");
+            Process.Start(@"C:\DENEOS\core\deneNavi.exe");
         }
 
         private void panel5_Click(object sender, EventArgs e)
         {
-            Process.Start("C:\\DENEOS\\systemApps\\deneNotes\\deneNotes.exe");
+            Process.Start("C:\\DENEOS\\core\\deneNotes.exe");
         }
 
         private void panel6_Click(object sender, EventArgs e)
@@ -225,7 +225,7 @@ namespace deneOS
         private void panel8_Click(object sender, EventArgs e)
         {
             // INICIAR CALENDAR.IO desde la instalación de deneOS
-            string calendarExe = @"C:\DENEOS\systemApps\Calendar.IO\Calendar.IO.exe";
+            string calendarExe = @"C:\DENEOS\core\Calendar.IO.exe";
             if (!File.Exists(calendarExe))
             {
                 MessageBox.Show((string)T("dfni"), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -248,7 +248,7 @@ namespace deneOS
         private void panel3_Click(object sender, EventArgs e)
         {
             //INICIAR DENEFILES
-            string deneFiles = @"C:\DENEOS\systemApps\deneFiles\deneFiles.exe";
+            string deneFiles = @"C:\DENEOS\core\deneFiles.exe";
             if (!File.Exists(deneFiles))
             {
                 MessageBox.Show((string)T("dfni"), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

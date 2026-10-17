@@ -24,6 +24,8 @@
         public static bool ForceVertical = false;
         public static bool ForceOOBE = false;
 
+        public static bool StraightToDesktop = false;
+
         // Flags de tipo string
         public static string Language = "";              // "es", "en", etc.
         public static string LaunchAppId = "";           // ej: "deneNotes"

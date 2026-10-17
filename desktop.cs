@@ -35,15 +35,11 @@ namespace deneOS
 
         private void desktop_Load(object sender, EventArgs e) => LoadDesktop();
 
-        private void panel12_Click(object sender, EventArgs e) => Process.Start(@"C:\DENEOS\systemApps\deneStore\deneStore.exe");
+        private void panel12_Click(object sender, EventArgs e) => Process.Start(@"C:\DENEOS\core\deneStore.exe");
 
-        private void flowLayoutPanel2_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
+        private void label18_Click(object sender, EventArgs e) => Process.Start(@"C:\DENEOS\core\deneStore.exe");
 
-        private void label18_Click(object sender, EventArgs e) => Process.Start(@"C:\DENEOS\systemApps\deneStore\deneStore.exe");
-
-        private void pictureBox2_Click(object sender, EventArgs e) => Process.Start(@"C:\DENEOS\systemApps\deneStore\deneStore.exe");
+        private void pictureBox2_Click(object sender, EventArgs e) => Process.Start(@"C:\DENEOS\core\deneStore.exe");
     }
 }

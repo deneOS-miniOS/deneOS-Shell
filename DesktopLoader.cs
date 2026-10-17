@@ -4,12 +4,17 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Reflection;
+using deneOS;
 
 public class DesktopLoader
 {
     public static void LoadShortcuts(string desktopPath, Control container)
     {
-        string[] shortcuts = Directory.GetFiles(desktopPath, "*.lnk");
+
+        string[] shortcuts = new string[0];
+        if (!flagMgmt.StraightToDesktop) {
+            shortcuts = Directory.GetFiles(desktopPath, "*.lnk");
+        }
 
         foreach (var shortcut in shortcuts)
         {

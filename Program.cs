@@ -1,4 +1,5 @@
 using deneOS.init;
+using System.Diagnostics;
 
 namespace deneOS
 {
@@ -9,7 +10,7 @@ namespace deneOS
                 Author = "repoficialx",
                 EntryPoint = "deneOS.exe",
                 Name = "deneOS System",
-                Version = "0.3.1",
+                Version = "0.4.1",
                 Permissions = ["system.ui", "filesystem.user.read", "filesystem.user.write", "filesystem.software.read", "filesystem.software.write", "network.internet", "system.core.access"],
                 TargetRuntime = "net10.0"
             };
@@ -25,15 +26,8 @@ namespace deneOS
             adminMgmt.argsCount = args.Length;
             Arguments();
             ApplicationConfiguration.Initialize();
-            if (ornMgmt.GetOrientation() == Orientation.Vertical)
-            {
-                
-                Application.Run(new BootScreenVertical());
-            }
-            else
-            {
                 Application.Run(new BootScreen());
-            }
+            
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration
         }
@@ -42,9 +36,9 @@ namespace deneOS
             if (File.Exists("c:\\currentsessionflags.txt")) File.Delete("c:\\currentsessionflags.txt");
             
 
-#if DEBUG
-            flagMgmt.EnableDebug = true;
-#endif
+            if (Debugger.IsAttached)
+                flagMgmt.EnableDebug = true;
+
             string[] args = Environment.GetCommandLineArgs();
             string[] argfile = Array.Empty<string>();
             foreach (string arg in args)
@@ -60,6 +54,7 @@ namespace deneOS
                 else if (arg.StartsWith("/dangerZone:forceUpdate")) flagMgmt.ForceUpdate = true;
 
                 else if (arg.StartsWith("/testing:untranslatedStrings")) flagMgmt.ShowUntranslatedStrings = true;
+                else if (arg.StartsWith("/debugging:straightToDesktop")) flagMgmt.StraightToDesktop = true;
                 else if (arg == "/safeMode") flagMgmt.SafeMode = true;
                 else if (arg == "/safeMode:network") flagMgmt.SafeModeWithNetwork = true;
                 else if (arg == "/resetPrefs") flagMgmt.ResetPrefs = true;
