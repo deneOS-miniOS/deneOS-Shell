@@ -270,50 +270,5 @@ namespace deneOS.init
         {
             e.Cancel = true;
         }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void boxpass_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void boxusr_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

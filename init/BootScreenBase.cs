@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.IO.Pipes;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using static dosu.UniversalConfiguration;
 using static Traductor;
@@ -13,11 +14,10 @@ using Timer = System.Windows.Forms.Timer;
 namespace deneOS.init
 {
     /// <summary>
-    /// Clase base compartida para BootScreen (horizontal) y BootScreenVertical.
-    /// Contiene toda la lógica de arranque; las subclases solo definen
-    /// el control de logo y su posicionamiento proporcional.
+    /// Contiene la lógica de arranque compartida por el único BootScreen adaptable.
+    /// El layout visual se gestiona en BootScreen mediante un TableLayoutPanel.
     /// </summary>
-    public  partial class BootScreenBase : Form
+    public abstract partial class BootScreenBase : Form
     {
         // ── Animación de boot ────────────────────────────────────────────
         private static readonly string[] BootAnillas =
@@ -42,22 +42,13 @@ namespace deneOS.init
         private int _bootIndex = 0;
         private Timer _bootTimer;
 
-        // ── Propiedades abstractas que cada subclase define ──────────────
+        // ── Controles que aporta el único formulario BootScreen ──────────
 
-        /// <summary>Control que muestra el logo (PictureBox o similar).</summary>
-        protected  Control LogoControl { get; }
+        /// <summary>Control que muestra la animación de anillas.</summary>
+        protected abstract Label SpinnerLabel { get; }
 
-        /// <summary>Control que muestra la animación de spinning.</summary>
-        protected  Label SpinnerLabel { get; }
-
-        /// <summary>Timer del Designer que dispara el paso a logonui/OOBE.</summary>
-        protected  Timer TransitionTimer { get; }
-
-        /// <summary>
-        /// Posiciona y dimensiona LogoControl en pantalla.
-        /// Cada subclase implementa su propia disposición.
-        /// </summary>
-        protected virtual void PositionLogo(){}
+        /// <summary>Timer que inicia la transición a logonui/OOBE.</summary>
+        protected abstract Timer TransitionTimer { get; }
 
         // ── Constructor compartido ───────────────────────────────────────
         private HeartbeatClient heartbeat = new();
@@ -95,6 +86,29 @@ namespace deneOS.init
             heartbeatTimer.Tick += heartbeatTimer_Tick;
             heartbeatTimer.Start();
 
+            if (flagMgmt.StraightToDesktop)
+            {
+                this.Opacity = 0;
+                this.Show();
+                this.BeginInvoke(new Action(() =>
+                {
+                    this.Opacity = 0; // Oculto pero sigue vivo para el heartbeat
+                    if (ornMgmt.GetOrientation() == Orientation.Horizontal)
+                    {
+                        new desktop().Show();
+                        new tbar().Show();
+                    }
+                    else
+                    {
+                        new TopBar().Show();
+                        new HomeScreen().Show();
+
+                        new BottomBar().Show();
+                    }
+                }));
+                return;
+            }
+
             if (flagMgmt.EmergencyUI)
             {
                 using var emergency = new EmergencyScreen();
@@ -106,8 +120,8 @@ namespace deneOS.init
             if (flagMgmt.SkipBootAnim)
             {
                 this.Opacity = 0;
+                // Show() dispara Load, que ejecuta RunBootChecks una sola vez.
                 this.Show();
-                RunBootChecks();
                 this.BeginInvoke(new Action(() =>
                 {
                     this.Opacity = 0; // Oculto pero sigue vivo para el heartbeat
@@ -128,6 +142,10 @@ namespace deneOS.init
 
             this.Show();
             Application.DoEvents();
+
+            // El temporizador de transición solo se activa para el arranque normal.
+            // SkipBootAnim, EmergencyUI y StraightToDesktop ya han tomado otra ruta.
+            TransitionTimer.Start();
         }
 
         // ── Ventana ──────────────────────────────────────────────────────
@@ -142,8 +160,6 @@ namespace deneOS.init
             this.TopMost       = true;
             this.BackColor     = Color.Black;
             this.WindowState   = FormWindowState.Maximized;
-
-            PositionLogo();
         }
 
         // ── Animación spinner ────────────────────────────────────────────
@@ -243,7 +259,7 @@ namespace deneOS.init
                     return;
                 }
 
-                // BootScreenVertical crea la estructura; BootScreen (horizontal) avisa y sale.
+                // El único BootScreen aplica el mismo tratamiento en cualquier orientación.
                 OnMissingStructure(hasFolders, hasCore);
             }
             catch (Exception ex)
@@ -258,7 +274,7 @@ namespace deneOS.init
         }
         /// <summary>
         /// Comportamiento cuando faltan archivos críticos.
-        /// BootScreen muestra error y cierra; BootScreenVertical los crea.
+        /// La comprobación es idéntica en horizontal y vertical.
         /// </summary>
         protected virtual void OnMissingStructure(bool hasFolders, bool hasCore)
         {
@@ -319,7 +335,9 @@ namespace deneOS.init
                     if (validUser)
                     {
                         Console.WriteLine($"[INFO] User: {user.Username} → logonui");
-                        new logonui().Show();
+                        _ = ornMgmt.GetOrientation() == Orientation.Horizontal
+                            ? new logonui().ShowDialog()
+                            : new logonuiVertical().ShowDialog();
                     }
                     else
                     {

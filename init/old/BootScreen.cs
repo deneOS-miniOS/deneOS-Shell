@@ -16,19 +16,29 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace deneOS.init
 {
-    public partial class BootScreenVertical : BootScreenBase
+    public partial class OldBootScreen : OldBootScreenBase
     {
-        protected  Control LogoControl    => pictureBox1;
-        protected  Label   SpinnerLabel   => label1;
-        protected  Timer   TransitionTimer => timer1;
+        protected  Control LogoControl  => logo;
+        protected  Label   SpinnerLabel => label1;
+        protected override Timer   TransitionTimer => timer1;
         protected override void PositionLogo()
         {
-            // En vertical el logo ocupa toda la pantalla (Dock = Fill en el Designer)
-            // No hace falta reposicionar manualmente.
+            // Proporciones respecto a 1920×1080 (diseño original)
+            float posX      = 684f / 1920f;
+            float posY      = 261f / 1080f;
+            float widthPct  = 572f / 1920f;
+            float heightPct = 468f / 1080f;
+ 
+            logo.Location = new Point(
+                (int)(posX * this.Width),
+                (int)(posY * this.Height));
+            logo.Size = new Size(
+                (int)(widthPct  * this.Width),
+                (int)(heightPct * this.Height));
         }
         private int bootIndex = 0;
         private System.Windows.Forms.Timer bootTimer;
-        public BootScreenVertical()
+        public OldBootScreen()
         {
             InitializeComponent();
             InitializeBootFlow();

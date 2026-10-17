@@ -46,7 +46,6 @@
             txt1.Size = new Size(293, 159);
             txt1.TabIndex = 0;
             txt1.Text = "TXT1";
-            txt1.Click += txt1_Click;
             // 
             // txt2
             // 
