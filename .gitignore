@@ -367,3 +367,6 @@ build-log.txt
 deneOS-build-log.txt
 
 *.lscache
+
+# AppleDouble Files
+._*
