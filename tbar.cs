@@ -22,7 +22,7 @@ namespace deneOS
         private float _dpiScale = 1.0f;
         private int _taskbarHeight = 48;
 
-        private static float GetDpiScale()
+        public static float GetDpiScale()
         {
             using var g = Graphics.FromHwnd(IntPtr.Zero);
             return g.DpiX / 96f;
