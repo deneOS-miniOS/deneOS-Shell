@@ -31,7 +31,6 @@ namespace deneOS.init
                 return;
             }
             InitializeComponent();
-            this.Show();
         }
         /// <summary>
         /// Obtener nombre del mes a partir del número del mes usando el sistema de traducción vía json

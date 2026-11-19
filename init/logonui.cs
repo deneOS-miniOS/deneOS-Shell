@@ -43,8 +43,6 @@ namespace deneOS.init
             Time_Stuff();
             Date_Stuff();
             UpdateClockPosition();
-
-            this.Show();
         }
 
         private void UpdateClockPosition()
@@ -324,7 +322,7 @@ namespace deneOS.init
                 formToShow.BringToFront();
                 if (formToShow is login)
                 {
-                    Close();
+                    Hide();
                 }
                 /*else if (formToShow is newusr newUserForm)
                 {
