@@ -49,6 +49,9 @@
     <Compile Update="OOBE\PCWelcomeBG.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Run.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">

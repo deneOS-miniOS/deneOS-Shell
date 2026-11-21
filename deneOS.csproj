@@ -76,11 +76,6 @@ Windows? Nah. Mejor deneOS. No es solo una "skin". Es una super-shell.</Descript
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Update="Properties\Settings.Designer.cs">
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
     <Compile Update="sm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,13 +88,6 @@ Windows? Nah. Mejor deneOS. No es solo una "skin". Es una super-shell.</Descript
     <Compile Update="volSlider.cs">
       <SubType>Form</SubType>
     </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
 
   <ItemGroup>
