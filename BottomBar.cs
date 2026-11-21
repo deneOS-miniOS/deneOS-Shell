@@ -36,21 +36,47 @@ namespace deneOS
 
         private void BottomBar_Load(object sender, EventArgs e)
         {
-            Console.WriteLine("[INFO] Loading tbar...");
-            int screenWidth = Screen.PrimaryScreen!.Bounds.Width;
-            int screenHeight = Screen.PrimaryScreen!.Bounds.Height;
-            Console.WriteLine("[INFO] Obtained screen resolution: " + screenWidth + "x" + screenHeight);
-            int taskbarHeight = 64;
-            Console.WriteLine("[INFO] Configuring taskbar...");
+            var _bottomBarHeight = 64;
+
+            var primaryScreen = Screen.PrimaryScreen
+    ?? Screen.AllScreens.FirstOrDefault();
+
+            int screenWidth = primaryScreen?.Bounds.Width ?? 1920;
+            int screenHeight = primaryScreen?.Bounds.Height ?? 1080;
+
             this.FormBorderStyle = FormBorderStyle.None;
             this.StartPosition = FormStartPosition.Manual;
-            
-            this.Location = new Point(0, screenHeight - taskbarHeight);
-            this.Size = new Size(screenWidth, taskbarHeight);
+            this.Size = new Size(screenWidth, _bottomBarHeight);
+            this.Location = new Point(
+                0,
+                screenHeight - _bottomBarHeight
+            );
+
             this.TopMost = true;
+            
             Console.WriteLine("[INFO] Bottom bar configured at the bottom of the screen.");
+
+            Console.WriteLine(
+    $"[{GetType().Name}] " +
+    $"Location={Location}, " +
+    $"Size={Size}, " +
+    $"Bounds={Bounds}, " +
+    $"Visible={Visible}, " +
+    $"TopMost={TopMost}"
+);
         }
 
-        
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var forms = Application.OpenForms;
+            foreach (Form form in forms)
+            {
+                if (form is HomeScreen)
+                {
+                    form.BringToFront();
+                    return;
+                }
+            }
+        }
     }
 }

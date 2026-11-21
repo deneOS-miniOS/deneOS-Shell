@@ -703,6 +703,36 @@ namespace deneOS.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Frame_1 {
+            get {
+                object obj = ResourceManager.GetObject("Frame 1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Frame_3_2 {
+            get {
+                object obj = ResourceManager.GetObject("Frame 3-2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Frame_3_3 {
+            get {
+                object obj = ResourceManager.GetObject("Frame 3-3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap FY25_Pride2025__BKG_02_Desktop {
             get {
                 object obj = ResourceManager.GetObject("FY25_Pride2025__BKG_02-Desktop", resourceCulture);
@@ -883,6 +913,16 @@ namespace deneOS.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_copybook_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-copybook-100", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_country_100 {
             get {
                 object obj = ResourceManager.GetObject("icons8-country-100", resourceCulture);
@@ -1003,6 +1043,16 @@ namespace deneOS.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_macbook_settings_1001 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-macbook-settings-1001", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_notes_100 {
             get {
                 object obj = ResourceManager.GetObject("icons8_notes_100", resourceCulture);
@@ -1036,6 +1086,16 @@ namespace deneOS.Properties {
         internal static System.Drawing.Bitmap icons8_restart_512 {
             get {
                 object obj = ResourceManager.GetObject("icons8_restart_512", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_run_command_100 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-run-command-100", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

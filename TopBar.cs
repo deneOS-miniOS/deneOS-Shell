@@ -27,38 +27,52 @@ namespace deneOS
 
         private void tbar_Load(object sender, EventArgs e)
         {
-            
-            int screenWidth = Screen.PrimaryScreen.Bounds.Width;
-            int screenHeight = Screen.PrimaryScreen.Bounds.Height;
+            var screen = Screen.PrimaryScreen
+    ?? Screen.AllScreens.FirstOrDefault();
 
-            int taskbarHeight = dosu.UI.SystemSizes.GetTaskbarHeight();
+            Console.WriteLine(
+                $"[DISPLAY] Resolution: {screen?.Bounds.Width}x{screen?.Bounds.Height}"
+            );
+
+            Console.WriteLine(
+                $"[DISPLAY] DPI: {tbar.GetDpiScale()}"
+            );
+
+            int _topBarHeight = dosu.UI.SystemSizes.GetTaskbarHeight();
+            var primaryScreen = Screen.PrimaryScreen
+        ?? Screen.AllScreens.FirstOrDefault();
+
+            int screenWidth = primaryScreen?.Bounds.Width ?? 1920;
 
             this.FormBorderStyle = FormBorderStyle.None;
             this.StartPosition = FormStartPosition.Manual;
-            this.Size = new Size(screenWidth, taskbarHeight);
-            this.Location = new Point(0, screenHeight - taskbarHeight);
+            this.Location = new Point(0, 0);
+            this.Size = new Size(screenWidth, _topBarHeight);
+
             this.TopMost = true;
-
-
 
             Timer tim = new Timer();
             tim.Interval = 100;
             tim.Tick += new EventHandler(timer1_Tick);
             tim.Start();
 
-            Timer utb = new Timer();
-            utb.Interval = 5000; // Actualizar cada 5 segundos
-            utb.Tick += new EventHandler(utb_Tick);
-            utb.Start();
 
             dosu.UI.Scaling.ScaleForm(this);
+
+            Console.WriteLine(
+    $"[{GetType().Name}] " +
+    $"Location={Location}, " +
+    $"Size={Size}, " +
+    $"Bounds={Bounds}, " +
+    $"Visible={Visible}, " +
+    $"TopMost={TopMost}"
+);
         }
         private async void timer1_Tick(object sender, EventArgs e)
         {
             PowerStatus status = SystemInformation.PowerStatus;
             //OBTENER PORCENTAJE BATERÍA
             label19.Text = DateTime.Now.ToString("HH:mm:ss");
-            label20.Text = DateTime.Now.ToString("dd/MM/yyyy");
             float getBattery = status.BatteryLifePercent * 100;
             ToolTip toolTip = new ToolTip();
             toolTip.ShowAlways = true;
@@ -80,10 +94,6 @@ namespace deneOS
             {
                 BackColor = ColorTranslator.FromHtml(globaldata.wallpaperPredominantColorHex);
             }
-        }
-        private void utb_Tick(object sender, EventArgs e)
-        {
-            RefreshTaskbar();
         }
         async Task gws()
         {
@@ -177,67 +187,7 @@ namespace deneOS
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            bool estaAbierto = Application.OpenForms.OfType<sm>().Any();
-            if (estaAbierto)
-            {
-                sm form2 = Application.OpenForms.OfType<sm>().FirstOrDefault();
-                if (form2 != null)
-                {
-                    form2.Close();
-                    return;
-                }
-
-                MessageBox.Show($"ERROR 0x6: {T("e0x6")}", "deneOS", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                sm sm = new sm();
-                sm.Show();
-            }
-
-        }
-        public static List<Form> VentanasAbiertas = new List<Form>();
-        void addApps()
-        {
-            var apps = dosu.UI.WindowTracker.ObtenerVentanas();
-
-            foreach (var app in apps)
-            {
-                //AppPanel app1 = new AppPanel(app.Icono.ToBitmap(), app.Titulo, "-1");
-                Button app1 = new Button();
-                app1.BackgroundImage = app.Icono.ToBitmap();
-                app1.BackgroundImageLayout = ImageLayout.Zoom;
-                app1.FlatStyle = FlatStyle.Popup;
-
-
-                app1.Click += (s, e) =>
-                {
-                    // Aquí puedes manejar el evento de clic para abrir la ventana correspondiente
-                    if (app.Proceso != null && !app.Proceso.HasExited)
-                    {
-                        // Si el proceso está activo, lo traemos al frente
-                        //FocusEXE(app.Proceso.ProcessName);
-                        SetForegroundWindow(app.Proceso.MainWindowHandle);
-
-                        // También puedes hacer algo más aquí, como cambiar el estado del botón o mostrar información adicional
-                    }
-                    else
-                    {
-                        MessageBox.Show((string)T("appclosed"), "deneOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                };
-                ToolTip tip = new ToolTip();
-                tip.SetToolTip(app1, app.Titulo);
-                app1.Size = new Size(50, 60);
-                app1.Location = new Point(0, 0);
-                flowLayoutPanel1.Controls.Add(app1);
-                dosu.UI.Scaling.ScaleForm(this);
-            }
-
-
-        }
+        
         protected override void OnFormClosed(FormClosedEventArgs e)
         {
             base.OnFormClosed(e);
@@ -245,63 +195,15 @@ namespace deneOS
             // ✅ Limpiar caché al cerrar
             dosu.UI.Scaling.ClearCache();
         }
-        void FocusEXE(string exeName)
-        {
-            string processName = exeName;
-
-            Process[] processes = Process.GetProcessesByName(processName);
-            if (processes.Length > 0)
-            {
-                // Get the main window handle of the first matching process
-                IntPtr handle = processes[0].MainWindowHandle;
-
-                // Bring the application to the foreground
-                if (SetForegroundWindow(handle))
-                {
-                    Console.WriteLine($"{processName} is now focused.");
-                }
-                else
-                {
-                    Console.WriteLine($"Failed to focus {processName}.");
-                }
-            }
-            else
-            {
-                Console.WriteLine($"No process named {processName} is running.");
-            }
-        }
-
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         private static extern bool SetForegroundWindow(IntPtr hWnd);
 
-        void RefreshTaskbar()
-        {
-            flowLayoutPanel1.Controls.Clear(); // Limpiar todos los iconos anteriores
-            Button home = new Button();
-            #region aplicar config
-            home.BackgroundImage = global::deneOS.Properties.Resources.denelogo;
-            home.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            home.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            home.Location = new System.Drawing.Point(0, 0);
-            home.Name = "button1";
-            home.Size = new System.Drawing.Size(72, 60);
-            home.TabIndex = 0;
-            home.UseVisualStyleBackColor = true;
-            home.Click += new System.EventHandler(this.button1_Click);
-            #endregion
-            flowLayoutPanel1.Controls.Add(home); // Añadir el botón de inicio al panel
-            addApps();
-        }
 
         private void tbar_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true; // Evitar que se cierre el formulario
         }
 
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void label23_Click(object sender, EventArgs e)
         {
