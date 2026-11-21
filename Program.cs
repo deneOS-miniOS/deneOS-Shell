@@ -31,8 +31,33 @@ namespace deneOS
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration
         }
+        static void Shell(string subArg)
+        {
+            if (subArg == "run")
+            {
+                ApplicationConfiguration.Initialize();
+                Application.Run(new Run(fromShell: true));
+                
+            }
+            else if (subArg == "volSlider")
+            {
+                ApplicationConfiguration.Initialize();
+                volSlider vol = new volSlider();
+                vol.FormClosed += (s, e) => Environment.Exit(0);
+                Application.Run(vol);
+            }
+            else if (subArg.StartsWith("crash::")) {
+                ApplicationConfiguration.Initialize();
+                string errorCode = subArg[8..];
+                EmergencyScreen crash = new EmergencyScreen(errorCode);
+                crash.FormClosed += (s, e) => Environment.Exit(0);
+                Application.Run(crash);
+            }
+        }
         public static void Arguments()
         {
+
+
             if (File.Exists("c:\\currentsessionflags.txt")) File.Delete("c:\\currentsessionflags.txt");
             
 
@@ -44,6 +69,8 @@ namespace deneOS
             foreach (string arg in args)
             {
                 _ = argfile.Length < args.Length ? argfile.Append(arg + Environment.NewLine) : null;
+
+                if (arg.StartsWith("shell:")) Shell(arg[6..]);
 
                 if (arg.StartsWith("/dangerZone:enableRoot")) flagMgmt.EnableRoot = true;
                 else if (arg.StartsWith("/dangerZone:debug")) flagMgmt.EnableDebug = true;
