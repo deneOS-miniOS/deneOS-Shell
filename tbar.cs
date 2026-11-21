@@ -98,26 +98,32 @@ namespace deneOS
             Console.WriteLine("[INFO] Loading taskbar...");
             _keyboardHook.HookKeyboard();
             Console.WriteLine("[INFO] Keyboard hooked.");
-            var primaryScreen = Screen.PrimaryScreen ?? Screen.AllScreens.FirstOrDefault();
-            int screenWidth = primaryScreen?.Bounds.Width ?? 1920;
-            int screenHeight = primaryScreen?.Bounds.Height ?? 1080;
-            Console.WriteLine("[INFO] Screen resolution: " + screenWidth + "x" + screenHeight);
-            _dpiScale = GetDpiScale();
-            int scaledHeight = (int)(48 * _dpiScale + 0.5f);
-            _taskbarHeight = scaledHeight < 48 ? 48 : scaledHeight;
-            Console.WriteLine("[INFO] DPI scale: " + _dpiScale + ", taskbar height: " + _taskbarHeight);
-            Console.WriteLine("[INFO] Setting up taskbar...");
+
             this.FormBorderStyle = FormBorderStyle.None;
             this.StartPosition = FormStartPosition.Manual;
-            this.Size = new Size(screenWidth, _taskbarHeight);
-            this.Location = new Point(0, screenHeight - _taskbarHeight);
-            panel1.Size = new Size(screenWidth, _taskbarHeight);
-            panel16.Size = new Size((int)(524 * _dpiScale + 0.5f), _taskbarHeight);
+            this.TopMost = true;
             flowLayoutPanel1.WrapContents = false;
             flowLayoutPanel3.WrapContents = false;
             flowLayoutPanel1.AutoSize = false;
             flowLayoutPanel3.AutoSize = false;
-            this.TopMost = true;
+
+            // Fuentes en puntos, UNA sola vez y sin multiplicar por el DPI
+            label19.Font = new Font(label19.Font.FontFamily, 10F, label19.Font.Style);
+            label20.Font = new Font(label20.Font.FontFamily, 8.5F, label20.Font.Style);
+            label19.TextAlign = ContentAlignment.BottomRight;
+            label20.TextAlign = ContentAlignment.TopRight;
+
+            foreach (var l in new[] { label21, label22, label25, label23, label24 })
+            {
+                l.Margin = new Padding(0);
+                l.TextAlign = ContentAlignment.MiddleCenter;
+            }
+            flowLayoutPanel3.Padding = new Padding(0);
+            flowLayoutPanel3.Margin = new Padding(0);
+
+            ApplyDpiLayout();
+
+
             Console.WriteLine("[INFO] Taskbar docked on bottom.");
             Console.WriteLine("[INFO] Initializing timers...");
 
@@ -138,56 +144,12 @@ namespace deneOS
                 BackColor = ColorTranslator.FromHtml(globaldata.wallpaperPredominantColorHex);
             }
 
-            /*
-            Timer tim = new Timer();
-            tim.Interval = 100;
-
-            tim.Tick += new EventHandler(timer1_Tick);
-            tim.Start();*/
-
             Timer utb = new Timer();
             utb.Interval = 5000; // Actualizar cada 5 segundos
             utb.Tick += new EventHandler(utb_Tick);
             utb.Start();
-            
+
             Console.WriteLine("[INFO] Timers started. Setting up Windows key hook.");
-            dosu.UI.Scaling.ScaleForm(this);
-            this.Size = new Size(screenWidth, _taskbarHeight);
-            this.Location = new Point(0, screenHeight - _taskbarHeight);
-            panel1.Size = new Size(screenWidth, _taskbarHeight);
-            panel16.Size = new Size((int)(560 * _dpiScale + 0.5f), _taskbarHeight);
-            flowLayoutPanel1.Size = new Size(screenWidth - panel16.Width, _taskbarHeight);
-            flowLayoutPanel3.Size = new Size(panel16.Width, _taskbarHeight);
-            panel2.Size = new Size(_taskbarHeight, _taskbarHeight);
-            button1.Size = new Size(_taskbarHeight, _taskbarHeight);
-            panel17.Size = new Size((int)(180 * _dpiScale + 0.5f), _taskbarHeight);
-            label19.Size = new Size(panel17.Width, _taskbarHeight / 2);
-            label19.Location = new Point(0, 0);
-            label19.Font = new Font(label19.Font.FontFamily, 10F * _dpiScale, label19.Font.Style);
-            label19.TextAlign = ContentAlignment.BottomRight;
-            label20.Size = new Size(panel17.Width, _taskbarHeight - label19.Height);
-            label20.Location = new Point(0, label19.Height);
-            label20.Font = new Font(label20.Font.FontFamily, 8.5F * _dpiScale, label20.Font.Style);
-            label20.TextAlign = ContentAlignment.TopRight;
-            label21.Size = new Size((int)(56 * _dpiScale + 0.5f), _taskbarHeight);
-            label22.Size = new Size((int)(60 * _dpiScale + 0.5f), _taskbarHeight);
-            label25.Size = new Size((int)(56 * _dpiScale + 0.5f), _taskbarHeight);
-            label23.Size = new Size((int)(60 * _dpiScale + 0.5f), _taskbarHeight);
-            label24.Size = new Size((int)(60 * _dpiScale + 0.5f), _taskbarHeight);
-            label21.Margin = new Padding(0);
-            label22.Margin = new Padding(0);
-            label25.Margin = new Padding(0);
-            label23.Margin = new Padding(0);
-            label24.Margin = new Padding(0);
-            label21.TextAlign = ContentAlignment.MiddleCenter;
-            label22.TextAlign = ContentAlignment.MiddleCenter;
-            label25.TextAlign = ContentAlignment.MiddleCenter;
-            label23.TextAlign = ContentAlignment.MiddleCenter;
-            label24.TextAlign = ContentAlignment.MiddleCenter;
-            flowLayoutPanel3.Padding = new Padding(0);
-            flowLayoutPanel3.Margin = new Padding(0);
-            // Suscribirse al evento de la tecla de Windows
-            // temporalmente no disponible porque saltaba excepción, así que la parte en donde se hookea pues está comentada
             _keyboardHook.WindowsKeyPressed += (s, e) =>
             {
                 bool estaAbierto = Application.OpenForms.OfType<sm>().Any();
@@ -201,6 +163,62 @@ namespace deneOS
                 }
             };
             Console.WriteLine("[INFO] Windows key hooked successfully.");
+        }
+        /// <summary>Toda la geometría (px) depende del DPI actual. Las fuentes NO se tocan.</summary>
+        private void ApplyDpiLayout()
+        {
+            _dpiScale = DeviceDpi / 96f;
+            int S(int px) => (int)Math.Round(px * _dpiScale);
+
+            var primary = Screen.PrimaryScreen ?? Screen.AllScreens.First();
+            int screenWidth = primary.Bounds.Width;
+            int screenHeight = primary.Bounds.Height;
+
+            _taskbarHeight = Math.Max(48, S(48));
+            int trayWidth = S(560);
+
+            SuspendLayout();
+
+            Size = new Size(screenWidth, _taskbarHeight);
+            Location = new Point(0, screenHeight - _taskbarHeight);
+
+            panel1.Size = new Size(screenWidth, _taskbarHeight);
+            panel16.Size = new Size(trayWidth, _taskbarHeight);
+            flowLayoutPanel1.Size = new Size(screenWidth - trayWidth, _taskbarHeight);
+            flowLayoutPanel3.Size = new Size(trayWidth, _taskbarHeight);
+
+            panel2.Size = new Size(_taskbarHeight, _taskbarHeight);
+            button1.Size = new Size(_taskbarHeight, _taskbarHeight);
+            if (_homeButton != null) _homeButton.Size = new Size(_taskbarHeight, _taskbarHeight);
+
+            panel17.Size = new Size(S(80), _taskbarHeight);
+            int rightPad = S(8);
+            int hourH = (int)(_taskbarHeight * 0.55);
+            label19.AutoSize = false;
+            label20.AutoSize = false;
+            label19.Padding = new Padding(0, 0, rightPad, 0);
+            label20.Padding = new Padding(0, 0, rightPad, 0);
+            label19.Size = new Size(panel17.Width, hourH);
+            label19.Location = new Point(0, 0);
+            label20.Size = new Size(panel17.Width, _taskbarHeight - hourH);
+            label20.Location = new Point(0, hourH);
+
+            label21.Size = new Size(S(35), _taskbarHeight);   // % batería
+            label25.Size = new Size(S(35), _taskbarHeight);   // % volumen
+            label22.Size = new Size(S(35), _taskbarHeight);   // icono batería
+            label23.Size = new Size(S(35), _taskbarHeight);   // icono volumen
+            label24.Size = new Size(S(35), _taskbarHeight);   // icono red
+
+            foreach (var b in _appButtons.Values)
+                b.Size = new Size(_taskbarHeight, _taskbarHeight);
+
+            ResumeLayout(true);
+        }
+
+        protected override void OnDpiChanged(DpiChangedEventArgs e)
+        {
+            base.OnDpiChanged(e);
+            ApplyDpiLayout();
         }
         void UpdateClock()
         {
@@ -284,7 +302,7 @@ namespace deneOS
                 response = IPStatus.NoResources;
             }
 
-            
+
             if (!(response == IPStatus.Success))
             {
                 wifiIcon = "\ue783";
@@ -376,7 +394,7 @@ namespace deneOS
                 if (percentage >= 20) return "";
                 if (percentage >= 10) return "";
                 if (percentage >= 5) return "";
-                Console.WriteLine("[INFO] Battery status: "+percentage+"% - critical (charging).");
+                Console.WriteLine("[INFO] Battery status: " + percentage + "% - critical (charging).");
                 return ""; // batería crítica pero cargando
             }
             else if (saverMode)
@@ -392,7 +410,7 @@ namespace deneOS
                 if (percentage >= 20) return "";
                 if (percentage >= 10) return "";
                 if (percentage >= 5) return "";
-                Console.WriteLine("[INFO] Battery status: "+percentage+"% - critical (saving).");
+                Console.WriteLine("[INFO] Battery status: " + percentage + "% - critical (saving).");
                 return ""; // batería crítica pero ahorrando
             }
             else
@@ -474,56 +492,78 @@ namespace deneOS
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         private static extern bool SetForegroundWindow(IntPtr hWnd);
         private Dictionary<IntPtr, Button> _appButtons = new();
+        private Button? _homeButton;
 
-        void RefreshTaskbar()
+        private void EnsureHomeButton()
         {
-            flowLayoutPanel1.Controls.Clear(); // Limpiar iconos de antes
-            Button home = new Button();
-            #region aplicar config
-            home.BackgroundImage = global::deneOS.Properties.Resources.denelogo;
-            home.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            home.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            home.Location = new System.Drawing.Point(0, 0);
-            home.Name = "button1";
-            home.Size = new System.Drawing.Size(_taskbarHeight, _taskbarHeight);
-            home.TabIndex = 0;
-            home.UseVisualStyleBackColor = true;
-            home.Click += new System.EventHandler(this.button1_Click);
-            #endregion
-            flowLayoutPanel1.Controls.Add(home); // Añadir start al panel
-            //addApps();
-            var currentApps = dosu.UI.WindowTracker.ObtenerVentanas();
-
-            var activeHandles = currentApps
-                .Where(a => a.Proceso != null && !a.Proceso.HasExited)
-                .Select(a => a.Proceso.MainWindowHandle)
-                .ToHashSet();
-
-            // quitar apps cerradas
-            foreach (var handle in _appButtons.Keys.ToList())
+            if (_homeButton == null || _homeButton.IsDisposed)
             {
-                if (!activeHandles.Contains(handle))
+                // Quitar el panel2/button1 del diseñador (se sustituye por este)
+                flowLayoutPanel1.Controls.Remove(panel2);
+
+                _homeButton = new Button
                 {
-                    flowLayoutPanel1.Controls.Remove(_appButtons[handle]);
-                    _appButtons[handle].Dispose();
-                    _appButtons.Remove(handle);
-                }
+                    BackgroundImage = global::deneOS.Properties.Resources.denelogo,
+                    BackgroundImageLayout = ImageLayout.Zoom,
+                    FlatStyle = FlatStyle.Popup,
+                    Name = "homeButton",
+                    Size = new Size(_taskbarHeight, _taskbarHeight),
+                    UseVisualStyleBackColor = true
+                };
+                _homeButton.Click += button1_Click;
             }
 
-            // añadi nuevas apps
+            if (!flowLayoutPanel1.Controls.Contains(_homeButton))
+            {
+                flowLayoutPanel1.Controls.Add(_homeButton);
+                flowLayoutPanel1.Controls.SetChildIndex(_homeButton, 0);
+            }
+        }
+        void RefreshTaskbar()
+        {
+            var currentApps = dosu.UI.WindowTracker.ObtenerVentanas();
+
+            // handle -> app, ignorando procesos cerrados o sin ventana
+            var active = new Dictionary<IntPtr, dynamic>();
             foreach (var app in currentApps)
             {
-                if (app.Proceso == null || app.Proceso.HasExited)
-                    continue;
+                if (app.Proceso == null || app.Proceso.HasExited) continue;
+                IntPtr handle = app.Proceso.MainWindowHandle;
+                if (handle == IntPtr.Zero) continue;
+                active[handle] = app;
+            }
 
-                var handle = app.Proceso.MainWindowHandle;
+            flowLayoutPanel1.SuspendLayout();
+            try
+            {
+                EnsureHomeButton();
 
-                if (!_appButtons.ContainsKey(handle))
+                // Quitar botones de apps cerradas
+                foreach (var handle in _appButtons.Keys.ToList())
                 {
-                    var btn = CreateAppButton(app);
-                    _appButtons[handle] = btn;
-                    flowLayoutPanel1.Controls.Add(btn);
+                    if (!active.ContainsKey(handle))
+                    {
+                        var btn = _appButtons[handle];
+                        flowLayoutPanel1.Controls.Remove(btn);
+                        btn.Dispose();
+                        _appButtons.Remove(handle);
+                    }
                 }
+
+                // Añadir botones de apps nuevas
+                foreach (var kv in active)
+                {
+                    if (!_appButtons.ContainsKey(kv.Key))
+                    {
+                        var btn = CreateAppButton(kv.Value);
+                        _appButtons[kv.Key] = btn;
+                        flowLayoutPanel1.Controls.Add(btn);
+                    }
+                }
+            }
+            finally
+            {
+                flowLayoutPanel1.ResumeLayout();
             }
         }
 
@@ -536,8 +576,8 @@ namespace deneOS
             app1.FlatAppearance.BorderSize = 0;
             app1.Size = new Size(_taskbarHeight, _taskbarHeight);
             app1.BackColor = Color.Transparent;
-            
-            
+
+
             app1.Paint += (s, e) =>
             {
                 if (Form.ActiveForm?.Handle == app.Proceso.MainWindowHandle)
@@ -614,6 +654,11 @@ namespace deneOS
         }
 
         private void flowLayoutPanel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label19_Click(object sender, EventArgs e)
         {
 
         }

@@ -57,7 +57,7 @@
             panel1.Dock = DockStyle.Bottom;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1920, 48);
+            panel1.Size = new Size(1804, 48);
             panel1.TabIndex = 1;
             // 
             // flowLayoutPanel1
@@ -66,7 +66,7 @@
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(1396, 48);
+            flowLayoutPanel1.Size = new Size(1280, 48);
             flowLayoutPanel1.TabIndex = 2;
             flowLayoutPanel1.Paint += flowLayoutPanel1_Paint;
             // 
@@ -94,7 +94,7 @@
             // 
             panel16.Controls.Add(flowLayoutPanel3);
             panel16.Dock = DockStyle.Right;
-            panel16.Location = new Point(1396, 0);
+            panel16.Location = new Point(1280, 0);
             panel16.Name = "panel16";
             panel16.Size = new Size(524, 48);
             panel16.TabIndex = 1;
@@ -119,47 +119,50 @@
             // 
             panel17.Controls.Add(label20);
             panel17.Controls.Add(label19);
-            panel17.Location = new Point(370, 3);
+            panel17.Location = new Point(441, 3);
             panel17.Name = "panel17";
-            panel17.Size = new Size(151, 79);
+            panel17.Size = new Size(80, 48);
             panel17.TabIndex = 0;
             // 
             // label20
             // 
-            label20.Font = new Font("Segoe UI", 13F);
-            label20.Location = new Point(3, 20);
+            label20.Font = new Font("Segoe UI", 8.5F);
+            label20.Location = new Point(1, 22);
             label20.Name = "label20";
-            label20.Size = new Size(151, 35);
+            label20.Size = new Size(76, 18);
             label20.TabIndex = 1;
             label20.Text = "00/00/0000";
             label20.TextAlign = ContentAlignment.TopRight;
             // 
             // label19
             // 
-            label19.Font = new Font("Segoe UI", 13F);
-            label19.Location = new Point(3, -3);
+            label19.Font = new Font("Segoe UI", 10F);
+            label19.Location = new Point(31, 0);
             label19.Name = "label19";
-            label19.Size = new Size(151, 35);
+            label19.Size = new Size(52, 22);
             label19.TabIndex = 0;
             label19.Text = "00:00";
             label19.TextAlign = ContentAlignment.TopRight;
+            label19.Click += label19_Click;
             // 
             // label21
             // 
             label21.Font = new Font("Segoe UI Variable Display", 9F);
-            label21.Location = new Point(319, 0);
+            label21.Location = new Point(403, 0);
+            label21.Margin = new Padding(0);
             label21.Name = "label21";
-            label21.Size = new Size(45, 48);
+            label21.Size = new Size(35, 48);
             label21.TabIndex = 2;
             label21.Text = "100%";
             label21.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label22
             // 
-            label22.Font = new Font("Segoe Fluent Icons", 16F);
-            label22.Location = new Point(271, 0);
+            label22.Font = new Font("Segoe Fluent Icons", 20F);
+            label22.Location = new Point(368, 0);
+            label22.Margin = new Padding(0);
             label22.Name = "label22";
-            label22.Size = new Size(42, 48);
+            label22.Size = new Size(35, 48);
             label22.TabIndex = 4;
             label22.Text = "";
             label22.TextAlign = ContentAlignment.MiddleRight;
@@ -167,19 +170,21 @@
             // label25
             // 
             label25.Font = new Font("Segoe UI Variable Display", 9F);
-            label25.Location = new Point(220, 0);
+            label25.Location = new Point(333, 0);
+            label25.Margin = new Padding(0);
             label25.Name = "label25";
-            label25.Size = new Size(45, 48);
+            label25.Size = new Size(35, 48);
             label25.TabIndex = 7;
             label25.Text = "100%";
             label25.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label23
             // 
-            label23.Font = new Font("Segoe Fluent Icons", 16F);
-            label23.Location = new Point(176, 0);
+            label23.Font = new Font("Segoe Fluent Icons", 20F);
+            label23.Location = new Point(298, 0);
+            label23.Margin = new Padding(0);
             label23.Name = "label23";
-            label23.Size = new Size(38, 48);
+            label23.Size = new Size(35, 48);
             label23.TabIndex = 5;
             label23.Text = "";
             label23.TextAlign = ContentAlignment.MiddleRight;
@@ -187,20 +192,20 @@
             // 
             // label24
             // 
-            label24.Font = new Font("Segoe Fluent Icons", 16F);
-            label24.Location = new Point(129, 0);
+            label24.Font = new Font("Segoe Fluent Icons", 20F);
+            label24.Location = new Point(258, 0);
+            label24.Margin = new Padding(0);
             label24.Name = "label24";
-            label24.Size = new Size(41, 48);
+            label24.Size = new Size(40, 48);
             label24.TabIndex = 6;
             label24.Text = "";
             label24.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // tbar
             // 
-            AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.None;
             BackColor = SystemColors.ControlText;
-            ClientSize = new Size(1920, 48);
+            ClientSize = new Size(1804, 48);
             Controls.Add(panel1);
             Font = new Font("Segoe UI Variable Display", 12F);
             ForeColor = SystemColors.Control;
