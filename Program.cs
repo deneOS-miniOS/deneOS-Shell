@@ -10,7 +10,7 @@ namespace deneOS
                 Author = "repoficialx",
                 EntryPoint = "deneOS.exe",
                 Name = "deneOS System",
-                Version = "0.4.1",
+                Version = "0.5.1",
                 Permissions = ["system.ui", "filesystem.user.read", "filesystem.user.write", "filesystem.software.read", "filesystem.software.write", "network.internet", "system.core.access"],
                 TargetRuntime = "net10.0"
             };
