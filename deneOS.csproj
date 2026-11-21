@@ -21,6 +21,7 @@ Windows? Nah. Mejor deneOS. No es solo una "skin". Es una super-shell.</Descript
     <PackageProjectUrl>https://repoficialx.xyz/deneOS</PackageProjectUrl>
 	  <PublishSingleFile>true</PublishSingleFile>
 	  <SelfContained>true</SelfContained>
+	  <ForceDesignerDPIUnaware>true</ForceDesignerDPIUnaware>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

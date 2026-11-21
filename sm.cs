@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,33 +11,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinRT;
 using static Traductor;
 
 namespace deneOS
 {
     public partial class sm : Form
     {
-        private float _dpiScale = 1.0f;
-
         public sm()
         {
             InitializeComponent();
 
-            _dpiScale = dosu.UI.Scaling.GetSystemDpiScale();
-
-            int startMenuWidth = (int)(378 * _dpiScale);
-            int startMenuHeight = (int)(513 * _dpiScale);
-
-            var primaryScreen = Screen.PrimaryScreen ?? Screen.AllScreens.FirstOrDefault();
-            int screenWidth = Screen.PrimaryScreen?.Bounds.Width ?? 1920;
-            int screenHeight = Screen.PrimaryScreen?.Bounds.Height ?? 1080;
-
-            int taskbarHeight = (int)(48 * _dpiScale);
-
             this.FormBorderStyle = FormBorderStyle.None;
             this.StartPosition = FormStartPosition.Manual;
-            this.Size = new Size(startMenuWidth, startMenuHeight);
-            this.Location = new Point(0, screenHeight - taskbarHeight - startMenuHeight);
 
             Color bgColor = globaldata.isImageLoaded ? ColorTranslator.FromHtml(globaldata.wallpaperPredominantColorHex) : Color.Black;
             if (bgColor.GetBrightness() > 0.6f)
@@ -48,19 +36,54 @@ namespace deneOS
             }
             this.BackColor = bgColor;
             this.ForeColor = Color.White;
-            panel2.BackColor = bgColor;
-            panel2.BringToFront();
+            BasePanel.BackColor = bgColor;
+            BasePanel.BringToFront();
 
-            dosu.UI.Scaling.ScaleForm(this);
+            // --- Escalado HiDPI ---
+            // El diseñador usa AutoScaleMode.None y todo está en píxeles pensados para 100 %
+            // (378x513). Las fuentes ya se escalan solas (están en puntos), pero las
+            // dimensiones de paneles, iconos y botones no: por eso el menú se veía pequeño.
+            // Escalamos la geometría una sola vez, usando el DPI del monitor de la taskbar.
+            // NO tocar las fuentes aquí, o se duplicaría su escala.
+            const int baseWidth = 378;
+            const int baseHeight = 513;
 
-            rec.Text = (string)T("dApp");
-            this.rec.Location = new System.Drawing.Point((int)(180 * _dpiScale), (int)(21 * _dpiScale));
-            if (Directory.Exists(@"C:\SOFTWARE\Recip") && Directory.EnumerateFiles(@"C:\SOFTWARE\Recip", "recip.*").Any())
-            {
-                rec.Text = (string)T("App");
-                rec.Location = new System.Drawing.Point((int)(312 * _dpiScale), (int)(21 * _dpiScale));
-            }
-            var Day = DateTime.Now.Day;
+            var taskbar = Application.OpenForms.OfType<tbar>().FirstOrDefault();
+            var screen = taskbar != null
+                ? Screen.FromControl(taskbar)
+                : Screen.PrimaryScreen ?? Screen.AllScreens.FirstOrDefault();
+            var screenBounds = screen?.Bounds ?? new Rectangle(0, 0, 1920, 1080);
+            int taskbarTop = taskbar?.Top ?? screenBounds.Bottom;
+
+            float scale = (taskbar?.DeviceDpi ?? this.DeviceDpi) / 96f;
+
+            // Seguro: si a este factor el menú no cabe encima de la taskbar, se reduce
+            // lo justo para que siempre quede completo y visible.
+            int availableHeight = taskbarTop - screenBounds.Top;
+            if (baseHeight * scale > availableHeight)
+                scale = Math.Max(1f, availableHeight / (float)baseHeight);
+
+            if (Math.Abs(scale - 1f) > 0.01f)
+                this.Scale(new SizeF(scale, scale));
+
+            this.Size = new Size(
+                (int)Math.Round(baseWidth * scale),
+                (int)Math.Round(baseHeight * scale));
+
+            int formWidth = this.Size.Width;
+            int formHeight = this.Size.Height;
+            int x = taskbar?.Left ?? screenBounds.Left;
+            int y = taskbarTop - formHeight;
+            int maxX = screenBounds.Right - formWidth;
+            int maxY = screenBounds.Bottom - formHeight;
+
+            if (x < screenBounds.Left) x = screenBounds.Left;
+            if (x > maxX) x = maxX;
+            if (y < screenBounds.Top) y = screenBounds.Top;
+            if (y > maxY) y = maxY;
+            this.Location = new Point(x, y);
+
+            /*var Day = DateTime.Now.Day;
             switch (Day)
             {
                 //for each case (day) set to calendarPic the resource with format [c]+[day]
@@ -161,30 +184,95 @@ namespace deneOS
                     calendarPic.Image = Properties.Resources.ScheduleTime_80;
                     break;
             }
-
+            */
             this.TopMost = true;
 
-            this.term.Text = (string)T("iApp");
-            this.ie.Text = (string)T("App");
-            cio.Text = (string)T("App");
-            def.Text = (string)T("sApp");
-            dnn.Text = (string)T("sApp");
-            dnno.Text = (string)T("sApp");
-            dnu.Text = (string)T("sApp");
-            /*
 
-            new KeyboardHook().WindowsKeyPressed += (s, e) =>
+            var rawData = StartMenuReg.GetRegData();
+            var arraysData = rawData.Item1;
+            var showR2WButton = rawData.Item2;
+
+            dockrightR2Wbtn.Visible = showR2WButton == 1 ? true : false;
+
+            string[] categories = arraysData[0];
+            string[] paths = arraysData[1];
+
+            App0Category.Text = (string)T(categories[0]);
+            App1Category.Text = (string)T(categories[1]);
+            App2Category.Text = (string)T(categories[2]);
+            App3Category.Text = (string)T(categories[3]);
+            App4Category.Text = (string)T(categories[4]);
+            App5Category.Text = (string)T(categories[5]);
+            App6Category.Text = (string)T(categories[6]);
+            App7Category.Text = (string)T(categories[7]);
+
+            App0Icon.Image = System.Drawing.Icon.ExtractAssociatedIcon(paths[0]).ToBitmap();
+            App1Icon.Image = System.Drawing.Icon.ExtractAssociatedIcon(paths[1]).ToBitmap();
+            App2Icon.Image = System.Drawing.Icon.ExtractAssociatedIcon(paths[2]).ToBitmap();
+            App3Icon.Image = System.Drawing.Icon.ExtractAssociatedIcon(paths[3]).ToBitmap();
+            App4Icon.Image = System.Drawing.Icon.ExtractAssociatedIcon(paths[4]).ToBitmap();
+            App5Icon.Image = System.Drawing.Icon.ExtractAssociatedIcon(paths[5]).ToBitmap();
+            App6Icon.Image = System.Drawing.Icon.ExtractAssociatedIcon(paths[6]).ToBitmap();
+            App7Icon.Image = System.Drawing.Icon.ExtractAssociatedIcon(paths[7]).ToBitmap();
+
+            App0Name.Text = Path.GetFileNameWithoutExtension(paths[0]);
+            App1Name.Text = Path.GetFileNameWithoutExtension(paths[1]);
+            App2Name.Text = Path.GetFileNameWithoutExtension(paths[2]);
+            App3Name.Text = Path.GetFileNameWithoutExtension(paths[3]);
+            App4Name.Text = Path.GetFileNameWithoutExtension(paths[4]);
+            App5Name.Text = Path.GetFileNameWithoutExtension(paths[5]);
+            App6Name.Text = Path.GetFileNameWithoutExtension(paths[6]);
+            App7Name.Text = Path.GetFileNameWithoutExtension(paths[7]);
+
+            App0Pnl.Click += (s, e) => Process.Start(paths[0]);
+            App1Pnl.Click += (s, e) => Process.Start(paths[1]);
+            App2Pnl.Click += (s, e) => Process.Start(paths[2]);
+            App3Pnl.Click += (s, e) => Process.Start(paths[3]);
+            App4Pnl.Click += (s, e) => Process.Start(paths[4]);
+            App5Pnl.Click += (s, e) => Process.Start(paths[5]);
+            App6Pnl.Click += (s, e) => Process.Start(paths[6]);
+            App7Pnl.Click += (s, e) => Process.Start(paths[7]);
+
+            foreach (Control control in App0Pnl.Controls) { control.Click += (s, e) => Process.Start(paths[0]); }
+            foreach (Control control in App1Pnl.Controls) { control.Click += (s, e) => Process.Start(paths[1]); }
+            foreach (Control control in App2Pnl.Controls) { control.Click += (s, e) => Process.Start(paths[2]); }
+            foreach (Control control in App3Pnl.Controls) { control.Click += (s, e) => Process.Start(paths[3]); }
+            foreach (Control control in App4Pnl.Controls) { control.Click += (s, e) => Process.Start(paths[4]); }
+            foreach (Control control in App5Pnl.Controls) { control.Click += (s, e) => Process.Start(paths[5]); }
+            foreach (Control control in App6Pnl.Controls) { control.Click += (s, e) => Process.Start(paths[6]); }
+            foreach (Control control in App7Pnl.Controls) { control.Click += (s, e) => Process.Start(paths[7]); }
+        }
+
+        class StartMenuReg
+        {
+            const string SubKeyPath = @"Software\deneOS\startmenu";
+            public static (string[][]?, int?) GetRegData()
             {
-                if (this.Visible)
+                using (RegistryKey? key = Registry.CurrentUser.OpenSubKey(SubKeyPath, writable: false))
                 {
-                    this.Hide();
+                    if (key is not null)
+                    {
+                        // Leer REG_MULTI_SZ -> string[]
+                        string[] categories = key.GetValue("EntriesCategories") as string[] ?? [];
+                        string[] paths = key.GetValue("EntriesPaths") as string[] ?? [];
+
+                        // Leer REG_DWORD -> int (o bool si lo prefieres)
+                        int rawShowButton = Convert.ToInt32(key.GetValue("showR2WButton", 0));
+                        bool showR2WButton = rawShowButton != 0;
+
+                        Console.WriteLine($"Categorías: {string.Join(", ", categories)}");
+                        Console.WriteLine($"Rutas: {string.Join(", ", paths)}");
+                        Console.WriteLine($"showR2WButton: {rawShowButton} ({showR2WButton})");
+                        return (new string[][] { categories, paths }, showR2WButton ? 1 : 0);
+                    }
+                    else
+                    {
+                        Console.WriteLine("La clave no existe todavía.");
+                        return (null, null); // Devolver arrays vacíos si la clave no existe
+                    }
                 }
-                else
-                {
-                    this.Show();
-                    this.Activate();
-                }
-            };*/
+            }
+
         }
 
         private async void sm_Load(object sender, EventArgs e)
@@ -197,11 +285,6 @@ namespace deneOS
             }
         }
 
-        private void panel12_Click(object sender, EventArgs e)
-        {
-            //INICIAR DENESTORE
-        }
-
         private void panel4_Click(object sender, EventArgs e)
         {
             Process.Start(@"C:\DENEOS\core\deneNavi.exe");
@@ -212,108 +295,6 @@ namespace deneOS
             Process.Start("C:\\DENEOS\\core\\deneNotes.exe");
         }
 
-        private void panel6_Click(object sender, EventArgs e)
-        {
-            //INICIAR DENEUPDATE
-        }
-
-        private void panel7_Click(object sender, EventArgs e)
-        {
-            panel4_Click(sender, e);
-        }
-
-        private void panel8_Click(object sender, EventArgs e)
-        {
-            // INICIAR CALENDAR.IO desde la instalación de deneOS
-            string calendarExe = @"C:\DENEOS\core\Calendar.IO.exe";
-            if (!File.Exists(calendarExe))
-            {
-                MessageBox.Show((string)T("dfni"), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            ProcessStartInfo startInfo = new ProcessStartInfo
-            {
-                FileName = calendarExe,
-                UseShellExecute = true
-            };
-            Process.Start(startInfo);
-        }
-
-        private void panel9_Click(object sender, EventArgs e)
-        {
-            //INICIAR DENETERMINAL
-        }
-
-        private void panel3_Click(object sender, EventArgs e)
-        {
-            //INICIAR DENEFILES
-            string deneFiles = @"C:\DENEOS\core\deneFiles.exe";
-            if (!File.Exists(deneFiles))
-            {
-                MessageBox.Show((string)T("dfni"), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            // Si el archivo existe, iniciar el proceso
-            ProcessStartInfo startInfo = new ProcessStartInfo
-            {
-                FileName = deneFiles,
-                Arguments = flagMgmt.EnableRoot ? "/dangerZone:enableRoot" : "",
-                UseShellExecute = true
-            };
-            Process.Start(startInfo);
-        }
-
-        private void panel10_Click(object sender, EventArgs e)
-        {
-            string installPath;
-            //COMPROBAR SI RECIP ESTÁ INSTALADO. SINO: INSTALAR, SI SÍ: INICIAR.
-            if (System.IO.File.Exists(@"C:\SOFTWARE\Recip\recip.exe"))
-            {
-                installPath = @"C:\SOFTWARE\Recip\recip.exe";
-                System.Diagnostics.Process.Start(installPath);
-            }
-            else
-            {
-
-                // TODO: CRITICAL: CAMBIAR YA LAS RUTAS Y EL SISTEMA DE DNPKG+DNPAI A DPK+DPKXT. 
-                // ADEMÁS QUITAR LAS REFERENCIAS A LA WEB INEXISTENTE YA INSCORP.X10.MX Y 
-                // REENRUTAR TODO A LA NUEVA WEB REPOFICIALX.XYZ.
-                
-                //descargar el archivo Recip.dnpkg
-                using (var client = new HttpClient())
-                {
-                    // Ruta del DPK: https://repoficialx.xyz/recip/api/getLatestDpk.php
-                    var dpkUrl = "https://repoficialx.xyz/recip/api/getLatestDpk.php";
-                    var DownloadsPath = Path.Combine("C:\\", "DNUSR", "Downloads");
-                    if (!Directory.Exists(DownloadsPath))
-                    {
-                        Directory.CreateDirectory(DownloadsPath);
-                    }
-
-                    var dpkFileUrl = client.GetStringAsync(dpkUrl);
-                    // Descargar el dpk a downloads
-                    var dpkFilePath = Path.Combine(DownloadsPath, "Recip.dpk");
-                    using (var dpkStream = client.GetStreamAsync(dpkFileUrl.Result).Result)
-                    using (var fileStream = new FileStream(dpkFilePath, FileMode.Create, FileAccess.Write, FileShare.None))
-                    {
-                        dpkStream.CopyTo(fileStream);
-                    }
-                    // Llamar a dpkxtconsole para instalar el dpk
-                    var dpkxtPath = @"C:\DENEOS\core\dpkxtconsole.exe";
-                    var startInfo = new ProcessStartInfo
-                    {
-                        FileName = dpkxtPath,
-                        Arguments = dpkFilePath,
-                        UseShellExecute = true
-                    };
-                    Process.Start(startInfo).WaitForExit();
-
-                    rec.Text = "App";
-                    rec.Location = new System.Drawing.Point(312, 21);
-                }
-            }
-        }
         private void button4_Click(object sender, EventArgs e)
         {
             var psi = new ProcessStartInfo
@@ -330,7 +311,7 @@ namespace deneOS
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string a1, b1; 
+            string a1, b1;
             object c1, d1;
             a1 = (string)T("sdopt");
             b1 = "deneOS";
@@ -349,13 +330,8 @@ namespace deneOS
         }
         private async void buttonApagarElegante_Click()
         {
-            for (int i = 5; i >= 1; i--)
-            {
-                MessageBox.Show($"{T("syspwoffin")} {i} {T("ss")}...", "deneOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                await Task.Delay(1000); // espera 1 segundo
-            }
-
-            Process.Start("shutdown", "-s -f -t 0");
+            MessageBox.Show($"{T("syspwoffin")} 15 {T("ss")}...", "deneOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Process.Start("shutdown", "-s -t 15");
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -371,6 +347,39 @@ namespace deneOS
         private void panel4_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var run = new Run
+            {
+                StartPosition = FormStartPosition.Manual
+            };
+
+            const int margin = 16;
+            var taskbar = Application.OpenForms.OfType<tbar>().FirstOrDefault();
+            var screen = taskbar != null
+                ? Screen.FromControl(taskbar)
+                : Screen.PrimaryScreen ?? Screen.AllScreens.FirstOrDefault();
+            var workingArea = screen?.WorkingArea ?? new Rectangle(0, 0, 1920, 1080);
+
+            int taskbarTop = taskbar?.Top ?? workingArea.Bottom;
+            int x = (taskbar?.Left ?? workingArea.Left) + margin;
+            int y = taskbarTop - run.Height;
+
+            int minX = workingArea.Left + margin;
+            int maxX = workingArea.Right - run.Width - margin;
+            if (x < minX)
+                x = minX;
+            else if (x > maxX)
+                x = maxX;
+
+            int minY = workingArea.Top + margin;
+            if (y < minY)
+                y = minY;
+
+            run.Location = new Point(x, y);
+            run.Show();
         }
     }
 }

@@ -28,530 +28,569 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel2 = new Panel();
-            flowLayoutPanel1 = new FlowLayoutPanel();
-            panel4 = new Panel();
-            dnn = new Label();
-            label4 = new Label();
-            dnnaviPic = new PictureBox();
-            panel5 = new Panel();
-            dnno = new Label();
-            label6 = new Label();
-            dnnotPic = new PictureBox();
-            panel6 = new Panel();
-            dnu = new Label();
-            label8 = new Label();
-            dnupdPic = new PictureBox();
-            panel7 = new Panel();
-            ie = new Label();
-            label10 = new Label();
-            ie11minPic = new PictureBox();
-            panel8 = new Panel();
-            cio = new Label();
-            label12 = new Label();
-            calendarPic = new PictureBox();
-            panel9 = new Panel();
-            term = new Label();
-            label14 = new Label();
-            termPic = new PictureBox();
-            panel3 = new Panel();
-            def = new Label();
-            label1 = new Label();
-            filesPic = new PictureBox();
-            panel10 = new Panel();
-            rec = new Label();
-            label17 = new Label();
-            recipPic = new PictureBox();
-            panel11 = new Panel();
-            button4 = new Button();
-            button3 = new Button();
-            button2 = new Button();
-            panel2.SuspendLayout();
-            flowLayoutPanel1.SuspendLayout();
-            panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dnnaviPic).BeginInit();
-            panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dnnotPic).BeginInit();
-            panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dnupdPic).BeginInit();
-            panel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)ie11minPic).BeginInit();
-            panel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)calendarPic).BeginInit();
-            panel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)termPic).BeginInit();
-            panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)filesPic).BeginInit();
-            panel10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)recipPic).BeginInit();
-            panel11.SuspendLayout();
+            BasePanel = new Panel();
+            AppsFlowPnl = new FlowLayoutPanel();
+            App0Pnl = new Panel();
+            App0Category = new Label();
+            App0Name = new Label();
+            App0Icon = new PictureBox();
+            App1Pnl = new Panel();
+            App1Category = new Label();
+            App1Name = new Label();
+            App1Icon = new PictureBox();
+            DockPnl = new Panel();
+            dockRunBtn = new Button();
+            this.dockrightR2Wbtn = new Button();
+            dockResetBtn = new Button();
+            dockShutdownBtn = new Button();
+            DockLeftFlowPnl = new FlowLayoutPanel();
+            App2Pnl = new Panel();
+            App2Category = new Label();
+            App2Name = new Label();
+            App2Icon = new PictureBox();
+            App3Pnl = new Panel();
+            App3Category = new Label();
+            App3Name = new Label();
+            App3Icon = new PictureBox();
+            App4Pnl = new Panel();
+            App4Category = new Label();
+            App4Name = new Label();
+            App4Icon = new PictureBox();
+            App5Pnl = new Panel();
+            App5Category = new Label();
+            App5Name = new Label();
+            App5Icon = new PictureBox();
+            App6Pnl = new Panel();
+            App6Category = new Label();
+            App6Name = new Label();
+            App6Icon = new PictureBox();
+            App7Pnl = new Panel();
+            App7Category = new Label();
+            App7Name = new Label();
+            App7Icon = new PictureBox();
+            BasePanel.SuspendLayout();
+            AppsFlowPnl.SuspendLayout();
+            App0Pnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)App0Icon).BeginInit();
+            App1Pnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)App1Icon).BeginInit();
+            DockPnl.SuspendLayout();
+            DockLeftFlowPnl.SuspendLayout();
+            App2Pnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)App2Icon).BeginInit();
+            App3Pnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)App3Icon).BeginInit();
+            App4Pnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)App4Icon).BeginInit();
+            App5Pnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)App5Icon).BeginInit();
+            App6Pnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)App6Icon).BeginInit();
+            App7Pnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)App7Icon).BeginInit();
             SuspendLayout();
             // 
-            // panel2
-            // 
-            panel2.Controls.Add(flowLayoutPanel1);
-            panel2.Location = new Point(0, 0);
-            panel2.Margin = new Padding(2);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(378, 512);
-            panel2.TabIndex = 2;
-            // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.BackColor = Color.Transparent;
-            flowLayoutPanel1.Controls.Add(panel4);
-            flowLayoutPanel1.Controls.Add(panel5);
-            flowLayoutPanel1.Controls.Add(panel6);
-            flowLayoutPanel1.Controls.Add(panel7);
-            flowLayoutPanel1.Controls.Add(panel8);
-            flowLayoutPanel1.Controls.Add(panel9);
-            flowLayoutPanel1.Controls.Add(panel3);
-            flowLayoutPanel1.Controls.Add(panel10);
-            flowLayoutPanel1.Controls.Add(panel11);
-            flowLayoutPanel1.Dock = DockStyle.Fill;
-            flowLayoutPanel1.Location = new Point(0, 0);
-            flowLayoutPanel1.Margin = new Padding(2);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(378, 512);
-            flowLayoutPanel1.TabIndex = 0;
-            // 
-            // panel4
-            // 
-            panel4.Controls.Add(dnn);
-            panel4.Controls.Add(label4);
-            panel4.Controls.Add(dnnaviPic);
-            panel4.Location = new Point(2, 2);
-            panel4.Margin = new Padding(2);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(364, 52);
-            panel4.TabIndex = 5;
-            panel4.Click += panel4_Click;
-            panel4.Paint += panel4_Paint;
-            // 
-            // dnn
-            // 
-            dnn.AutoSize = true;
-            dnn.Location = new Point(246, 20);
-            dnn.Margin = new Padding(2, 0, 2, 0);
-            dnn.Name = "dnn";
-            dnn.Size = new Size(94, 21);
-            dnn.TabIndex = 2;
-            dnn.Text = "System App";
-            dnn.Click += panel4_Click;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 16F);
-            label4.Location = new Point(55, 11);
-            label4.Margin = new Padding(2, 0, 2, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(107, 30);
-            label4.TabIndex = 1;
-            label4.Text = "DeneNavi";
-            label4.Click += panel4_Click;
-            // 
-            // dnnaviPic
-            // 
-            dnnaviPic.Location = new Point(6, 5);
-            dnnaviPic.Margin = new Padding(2);
-            dnnaviPic.Name = "dnnaviPic";
-            dnnaviPic.Size = new Size(42, 42);
-            dnnaviPic.SizeMode = PictureBoxSizeMode.Zoom;
-            dnnaviPic.TabIndex = 0;
-            dnnaviPic.TabStop = false;
-            dnnaviPic.Click += panel4_Click;
-            // 
-            // panel5
-            // 
-            panel5.Controls.Add(dnno);
-            panel5.Controls.Add(label6);
-            panel5.Controls.Add(dnnotPic);
-            panel5.Location = new Point(2, 58);
-            panel5.Margin = new Padding(2);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(364, 52);
-            panel5.TabIndex = 6;
-            panel5.Click += panel5_Click;
-            // 
-            // dnno
-            // 
-            dnno.AutoSize = true;
-            dnno.Location = new Point(244, 20);
-            dnno.Margin = new Padding(2, 0, 2, 0);
-            dnno.Name = "dnno";
-            dnno.Size = new Size(94, 21);
-            dnno.TabIndex = 2;
-            dnno.Text = "System App";
-            dnno.Click += panel5_Click;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 16F);
-            label6.Location = new Point(55, 11);
-            label6.Margin = new Padding(2, 0, 2, 0);
-            label6.Name = "label6";
-            label6.Size = new Size(121, 30);
-            label6.TabIndex = 1;
-            label6.Text = "DeneNotes";
-            label6.Click += panel5_Click;
-            // 
-            // dnnotPic
-            // 
-            dnnotPic.Image = Properties.Resources.icons8_notes_100;
-            dnnotPic.Location = new Point(6, 5);
-            dnnotPic.Margin = new Padding(2);
-            dnnotPic.Name = "dnnotPic";
-            dnnotPic.Size = new Size(42, 42);
-            dnnotPic.SizeMode = PictureBoxSizeMode.Zoom;
-            dnnotPic.TabIndex = 0;
-            dnnotPic.TabStop = false;
-            dnnotPic.Click += panel5_Click;
-            // 
-            // panel6
-            // 
-            panel6.Controls.Add(dnu);
-            panel6.Controls.Add(label8);
-            panel6.Controls.Add(dnupdPic);
-            panel6.Location = new Point(2, 114);
-            panel6.Margin = new Padding(2);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(364, 52);
-            panel6.TabIndex = 7;
-            panel6.Click += panel6_Click;
-            // 
-            // dnu
-            // 
-            dnu.AutoSize = true;
-            dnu.Location = new Point(245, 21);
-            dnu.Margin = new Padding(2, 0, 2, 0);
-            dnu.Name = "dnu";
-            dnu.Size = new Size(94, 21);
-            dnu.TabIndex = 2;
-            dnu.Text = "System App";
-            dnu.Click += panel6_Click;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 16F);
-            label8.Location = new Point(55, 11);
-            label8.Margin = new Padding(2, 0, 2, 0);
-            label8.Name = "label8";
-            label8.Size = new Size(135, 30);
-            label8.TabIndex = 1;
-            label8.Text = "DeneUpdate";
-            label8.Click += panel6_Click;
-            // 
-            // dnupdPic
-            // 
-            dnupdPic.Image = Properties.Resources.icons8_update_100;
-            dnupdPic.Location = new Point(6, 5);
-            dnupdPic.Margin = new Padding(2);
-            dnupdPic.Name = "dnupdPic";
-            dnupdPic.Size = new Size(42, 42);
-            dnupdPic.SizeMode = PictureBoxSizeMode.Zoom;
-            dnupdPic.TabIndex = 0;
-            dnupdPic.TabStop = false;
-            dnupdPic.Click += panel6_Click;
-            // 
-            // panel7
-            // 
-            panel7.Controls.Add(ie);
-            panel7.Controls.Add(label10);
-            panel7.Controls.Add(ie11minPic);
-            panel7.Location = new Point(2, 170);
-            panel7.Margin = new Padding(2);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(364, 52);
-            panel7.TabIndex = 8;
-            panel7.Click += panel7_Click;
-            // 
-            // ie
-            // 
-            ie.AutoSize = true;
-            ie.Location = new Point(312, 21);
-            ie.Margin = new Padding(2, 0, 2, 0);
-            ie.Name = "ie";
-            ie.Size = new Size(38, 21);
-            ie.TabIndex = 2;
-            ie.Text = "App";
-            ie.Click += panel7_Click;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI", 16F);
-            label10.Location = new Point(55, 11);
-            label10.Margin = new Padding(2, 0, 2, 0);
-            label10.Name = "label10";
-            label10.Size = new Size(205, 30);
-            label10.TabIndex = 1;
-            label10.Text = "Internet Explorer 11";
-            label10.Click += panel7_Click;
-            // 
-            // ie11minPic
-            // 
-            ie11minPic.Image = Properties.Resources.icons8_internet_100;
-            ie11minPic.Location = new Point(6, 5);
-            ie11minPic.Margin = new Padding(2);
-            ie11minPic.Name = "ie11minPic";
-            ie11minPic.Size = new Size(42, 42);
-            ie11minPic.SizeMode = PictureBoxSizeMode.Zoom;
-            ie11minPic.TabIndex = 0;
-            ie11minPic.TabStop = false;
-            ie11minPic.Click += panel7_Click;
-            // 
-            // panel8
-            // 
-            panel8.Controls.Add(cio);
-            panel8.Controls.Add(label12);
-            panel8.Controls.Add(calendarPic);
-            panel8.Location = new Point(2, 226);
-            panel8.Margin = new Padding(2);
-            panel8.Name = "panel8";
-            panel8.Size = new Size(364, 52);
-            panel8.TabIndex = 9;
-            panel8.Click += panel8_Click;
-            // 
-            // cio
-            // 
-            cio.AutoSize = true;
-            cio.Location = new Point(312, 21);
-            cio.Margin = new Padding(2, 0, 2, 0);
-            cio.Name = "cio";
-            cio.Size = new Size(38, 21);
-            cio.TabIndex = 2;
-            cio.Text = "App";
-            cio.Click += panel8_Click;
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Segoe UI", 16F);
-            label12.Location = new Point(55, 11);
-            label12.Margin = new Padding(2, 0, 2, 0);
-            label12.Name = "label12";
-            label12.Size = new Size(131, 30);
-            label12.TabIndex = 1;
-            label12.Text = "Calendar-IO";
-            label12.Click += panel8_Click;
-            // 
-            // calendarPic
-            // 
-            calendarPic.Image = Properties.Resources.ScheduleTime_80;
-            calendarPic.Location = new Point(6, 5);
-            calendarPic.Margin = new Padding(2);
-            calendarPic.Name = "calendarPic";
-            calendarPic.Size = new Size(42, 42);
-            calendarPic.SizeMode = PictureBoxSizeMode.Zoom;
-            calendarPic.TabIndex = 0;
-            calendarPic.TabStop = false;
-            calendarPic.Click += panel8_Click;
-            // 
-            // panel9
-            // 
-            panel9.Controls.Add(term);
-            panel9.Controls.Add(label14);
-            panel9.Controls.Add(termPic);
-            panel9.Location = new Point(2, 282);
-            panel9.Margin = new Padding(2);
-            panel9.Name = "panel9";
-            panel9.Size = new Size(364, 52);
-            panel9.TabIndex = 10;
-            panel9.Click += panel9_Click;
-            // 
-            // term
-            // 
-            term.AutoSize = true;
-            term.Location = new Point(225, 21);
-            term.Margin = new Padding(2, 0, 2, 0);
-            term.Name = "term";
-            term.Size = new Size(107, 21);
-            term.TabIndex = 2;
-            term.Text = "Imported App";
-            term.Click += panel8_Click;
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Font = new Font("Segoe UI", 16F);
-            label14.Location = new Point(55, 11);
-            label14.Margin = new Padding(2, 0, 2, 0);
-            label14.Name = "label14";
-            label14.Size = new Size(95, 30);
-            label14.TabIndex = 1;
-            label14.Text = "Terminal";
-            label14.Click += panel9_Click;
-            // 
-            // termPic
-            // 
-            termPic.Image = Properties.Resources.icons8_command_line_100;
-            termPic.Location = new Point(6, 5);
-            termPic.Margin = new Padding(2);
-            termPic.Name = "termPic";
-            termPic.Size = new Size(42, 42);
-            termPic.SizeMode = PictureBoxSizeMode.Zoom;
-            termPic.TabIndex = 0;
-            termPic.TabStop = false;
-            termPic.Click += panel9_Click;
-            // 
-            // panel3
-            // 
-            panel3.Controls.Add(def);
-            panel3.Controls.Add(label1);
-            panel3.Controls.Add(filesPic);
-            panel3.Location = new Point(2, 338);
-            panel3.Margin = new Padding(2);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(364, 52);
-            panel3.TabIndex = 4;
-            panel3.Click += panel3_Click;
-            // 
-            // def
-            // 
-            def.AutoSize = true;
-            def.Location = new Point(245, 21);
-            def.Margin = new Padding(2, 0, 2, 0);
-            def.Name = "def";
-            def.Size = new Size(94, 21);
-            def.TabIndex = 2;
-            def.Text = "System App";
-            def.Click += panel3_Click;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 16F);
-            label1.Location = new Point(55, 11);
-            label1.Margin = new Padding(2, 0, 2, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(106, 30);
-            label1.TabIndex = 1;
-            label1.Text = "DeneFiles";
-            label1.Click += panel3_Click;
-            // 
-            // filesPic
-            // 
-            filesPic.Image = Properties.Resources.icons8_file_explorer_100;
-            filesPic.Location = new Point(6, 5);
-            filesPic.Margin = new Padding(2);
-            filesPic.Name = "filesPic";
-            filesPic.Size = new Size(42, 42);
-            filesPic.SizeMode = PictureBoxSizeMode.Zoom;
-            filesPic.TabIndex = 0;
-            filesPic.TabStop = false;
-            filesPic.Click += panel3_Click;
-            // 
-            // panel10
-            // 
-            panel10.Controls.Add(rec);
-            panel10.Controls.Add(label17);
-            panel10.Controls.Add(recipPic);
-            panel10.Location = new Point(2, 394);
-            panel10.Margin = new Padding(2);
-            panel10.Name = "panel10";
-            panel10.Size = new Size(364, 52);
-            panel10.TabIndex = 5;
-            panel10.Click += panel10_Click;
-            // 
-            // rec
-            // 
-            rec.AutoSize = true;
-            rec.Location = new Point(180, 19);
-            rec.Margin = new Padding(2, 0, 2, 0);
-            rec.Name = "rec";
-            rec.RightToLeft = RightToLeft.Yes;
-            rec.Size = new Size(141, 21);
-            rec.TabIndex = 2;
-            rec.Text = "Downloadable App";
-            rec.Click += panel10_Click;
-            // 
-            // label17
-            // 
-            label17.AutoSize = true;
-            label17.Font = new Font("Segoe UI", 16F);
-            label17.Location = new Point(55, 11);
-            label17.Margin = new Padding(2, 0, 2, 0);
-            label17.Name = "label17";
-            label17.Size = new Size(65, 30);
-            label17.TabIndex = 1;
-            label17.Text = "Recip";
-            label17.Click += panel10_Click;
-            // 
-            // recipPic
-            // 
-            recipPic.Image = Properties.Resources.RecipV2_NoBackground;
-            recipPic.Location = new Point(6, 5);
-            recipPic.Margin = new Padding(2);
-            recipPic.Name = "recipPic";
-            recipPic.Size = new Size(42, 42);
-            recipPic.SizeMode = PictureBoxSizeMode.Zoom;
-            recipPic.TabIndex = 0;
-            recipPic.TabStop = false;
-            recipPic.Click += panel10_Click;
-            // 
-            // panel11
-            // 
-            panel11.BackColor = Color.Transparent;
-            panel11.Controls.Add(button4);
-            panel11.Controls.Add(button3);
-            panel11.Controls.Add(button2);
-            panel11.Location = new Point(2, 450);
-            panel11.Margin = new Padding(2);
-            panel11.Name = "panel11";
-            panel11.Size = new Size(375, 46);
-            panel11.TabIndex = 11;
-            // 
-            // button4
-            // 
-            button4.BackgroundImage = Properties.Resources.icons8_exit_100;
-            button4.BackgroundImageLayout = ImageLayout.Zoom;
-            button4.FlatStyle = FlatStyle.Popup;
-            button4.Location = new Point(55, 2);
-            button4.Margin = new Padding(2);
-            button4.Name = "button4";
-            button4.Size = new Size(42, 38);
-            button4.TabIndex = 2;
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
-            // 
-            // button3
-            // 
-            button3.BackColor = Color.Transparent;
-            button3.BackgroundImage = Properties.Resources.icons8_restart_100;
-            button3.BackgroundImageLayout = ImageLayout.Zoom;
-            button3.FlatStyle = FlatStyle.Popup;
-            button3.Location = new Point(104, 4);
-            button3.Margin = new Padding(2);
-            button3.Name = "button3";
-            button3.Size = new Size(42, 38);
-            button3.TabIndex = 1;
-            button3.UseVisualStyleBackColor = false;
-            button3.Click += button3_Click;
-            // 
-            // button2
-            // 
-            button2.BackColor = Color.Transparent;
-            button2.BackgroundImage = Properties.Resources.icons8_shutdown_100;
-            button2.BackgroundImageLayout = ImageLayout.Zoom;
-            button2.FlatStyle = FlatStyle.Popup;
-            button2.Location = new Point(6, 2);
-            button2.Margin = new Padding(2);
-            button2.Name = "button2";
-            button2.Size = new Size(42, 38);
-            button2.TabIndex = 0;
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
+            // BasePanel
+            // 
+            BasePanel.Controls.Add(AppsFlowPnl);
+            BasePanel.Controls.Add(DockPnl);
+            BasePanel.Dock = DockStyle.Fill;
+            BasePanel.Location = new Point(0, 0);
+            BasePanel.Margin = new Padding(2);
+            BasePanel.Name = "BasePanel";
+            BasePanel.Size = new Size(378, 498);
+            BasePanel.TabIndex = 2;
+            // 
+            // AppsFlowPnl
+            // 
+            AppsFlowPnl.BackColor = Color.Transparent;
+            AppsFlowPnl.Controls.Add(App0Pnl);
+            AppsFlowPnl.Controls.Add(App1Pnl);
+            AppsFlowPnl.Controls.Add(App2Pnl);
+            AppsFlowPnl.Controls.Add(App3Pnl);
+            AppsFlowPnl.Controls.Add(App4Pnl);
+            AppsFlowPnl.Controls.Add(App5Pnl);
+            AppsFlowPnl.Controls.Add(App6Pnl);
+            AppsFlowPnl.Controls.Add(App7Pnl);
+            AppsFlowPnl.Dock = DockStyle.Fill;
+            AppsFlowPnl.Location = new Point(0, 0);
+            AppsFlowPnl.Margin = new Padding(2);
+            AppsFlowPnl.Name = "AppsFlowPnl";
+            AppsFlowPnl.Size = new Size(378, 452);
+            AppsFlowPnl.TabIndex = 0;
+            // 
+            // App0Pnl
+            // 
+            App0Pnl.Controls.Add(App0Category);
+            App0Pnl.Controls.Add(App0Name);
+            App0Pnl.Controls.Add(App0Icon);
+            App0Pnl.Dock = DockStyle.Top;
+            App0Pnl.Location = new Point(2, 2);
+            App0Pnl.Margin = new Padding(2);
+            App0Pnl.Name = "App0Pnl";
+            App0Pnl.Size = new Size(364, 52);
+            App0Pnl.TabIndex = 5;
+            App0Pnl.Click += panel4_Click;
+            App0Pnl.Paint += panel4_Paint;
+            // 
+            // App0Category
+            // 
+            App0Category.Dock = DockStyle.Right;
+            App0Category.Location = new Point(245, 0);
+            App0Category.Margin = new Padding(2, 0, 2, 0);
+            App0Category.Name = "App0Category";
+            App0Category.Size = new Size(119, 52);
+            App0Category.TabIndex = 2;
+            App0Category.Text = "[0]";
+            App0Category.TextAlign = ContentAlignment.MiddleRight;
+            App0Category.Click += panel4_Click;
+            // 
+            // App0Name
+            // 
+            App0Name.Dock = DockStyle.Fill;
+            App0Name.Font = new Font("Segoe UI", 16F);
+            App0Name.Location = new Point(42, 0);
+            App0Name.Margin = new Padding(2, 0, 2, 0);
+            App0Name.Name = "App0Name";
+            App0Name.Size = new Size(322, 52);
+            App0Name.TabIndex = 1;
+            App0Name.Text = "[0]";
+            App0Name.TextAlign = ContentAlignment.MiddleLeft;
+            App0Name.Click += panel4_Click;
+            // 
+            // App0Icon
+            // 
+            App0Icon.Dock = DockStyle.Left;
+            App0Icon.Image = Properties.Resources.icons8_internet_100;
+            App0Icon.Location = new Point(0, 0);
+            App0Icon.Margin = new Padding(2);
+            App0Icon.Name = "App0Icon";
+            App0Icon.Size = new Size(42, 52);
+            App0Icon.SizeMode = PictureBoxSizeMode.Zoom;
+            App0Icon.TabIndex = 0;
+            App0Icon.TabStop = false;
+            App0Icon.Click += panel4_Click;
+            // 
+            // App1Pnl
+            // 
+            App1Pnl.Controls.Add(App1Category);
+            App1Pnl.Controls.Add(App1Name);
+            App1Pnl.Controls.Add(App1Icon);
+            App1Pnl.Dock = DockStyle.Top;
+            App1Pnl.Location = new Point(2, 58);
+            App1Pnl.Margin = new Padding(2);
+            App1Pnl.Name = "App1Pnl";
+            App1Pnl.Size = new Size(364, 52);
+            App1Pnl.TabIndex = 6;
+            App1Pnl.Click += panel5_Click;
+            // 
+            // App1Category
+            // 
+            App1Category.Dock = DockStyle.Right;
+            App1Category.Location = new Point(245, 0);
+            App1Category.Margin = new Padding(2, 0, 2, 0);
+            App1Category.Name = "App1Category";
+            App1Category.Size = new Size(119, 52);
+            App1Category.TabIndex = 2;
+            App1Category.Text = "[1]";
+            App1Category.TextAlign = ContentAlignment.MiddleRight;
+            App1Category.Click += panel5_Click;
+            // 
+            // App1Name
+            // 
+            App1Name.Dock = DockStyle.Fill;
+            App1Name.Font = new Font("Segoe UI", 16F);
+            App1Name.Location = new Point(42, 0);
+            App1Name.Margin = new Padding(2, 0, 2, 0);
+            App1Name.Name = "App1Name";
+            App1Name.Size = new Size(322, 52);
+            App1Name.TabIndex = 1;
+            App1Name.Text = "[1]";
+            App1Name.TextAlign = ContentAlignment.MiddleLeft;
+            App1Name.Click += panel5_Click;
+            // 
+            // App1Icon
+            // 
+            App1Icon.Dock = DockStyle.Left;
+            App1Icon.Image = Properties.Resources.icons8_copybook_100;
+            App1Icon.Location = new Point(0, 0);
+            App1Icon.Margin = new Padding(2);
+            App1Icon.Name = "App1Icon";
+            App1Icon.Size = new Size(42, 52);
+            App1Icon.SizeMode = PictureBoxSizeMode.Zoom;
+            App1Icon.TabIndex = 0;
+            App1Icon.TabStop = false;
+            App1Icon.Click += panel5_Click;
+            // 
+            // DockPnl
+            // 
+            DockPnl.BackColor = Color.Transparent;
+            DockPnl.Controls.Add(DockLeftFlowPnl);
+            DockPnl.Controls.Add(this.dockrightR2Wbtn);
+            DockPnl.Dock = DockStyle.Bottom;
+            DockPnl.Location = new Point(0, 452);
+            DockPnl.Margin = new Padding(2);
+            DockPnl.Name = "DockPnl";
+            DockPnl.Size = new Size(378, 46);
+            DockPnl.TabIndex = 11;
+            // 
+            // dockRunBtn
+            // 
+            dockRunBtn.BackColor = Color.Transparent;
+            dockRunBtn.BackgroundImage = Properties.Resources.icons8_run_command_100;
+            dockRunBtn.BackgroundImageLayout = ImageLayout.Zoom;
+            dockRunBtn.FlatStyle = FlatStyle.Popup;
+            dockRunBtn.Location = new Point(94, 2);
+            dockRunBtn.Margin = new Padding(2);
+            dockRunBtn.Name = "dockRunBtn";
+            dockRunBtn.Size = new Size(42, 38);
+            dockRunBtn.TabIndex = 3;
+            dockRunBtn.UseVisualStyleBackColor = false;
+            dockRunBtn.Click += button1_Click;
+            // 
+            // dockrightR2Wbtn
+            // 
+            this.dockrightR2Wbtn.BackgroundImage = Properties.Resources.icons8_exit_100;
+            this.dockrightR2Wbtn.BackgroundImageLayout = ImageLayout.Zoom;
+            this.dockrightR2Wbtn.Dock = DockStyle.Right;
+            this.dockrightR2Wbtn.FlatStyle = FlatStyle.Popup;
+            this.dockrightR2Wbtn.Location = new Point(340, 0);
+            this.dockrightR2Wbtn.Margin = new Padding(2);
+            this.dockrightR2Wbtn.Name = "dockrightR2Wbtn";
+            this.dockrightR2Wbtn.Size = new Size(38, 46);
+            this.dockrightR2Wbtn.TabIndex = 2;
+            this.dockrightR2Wbtn.UseVisualStyleBackColor = true;
+            this.dockrightR2Wbtn.Click += this.button4_Click;
+            // 
+            // dockResetBtn
+            // 
+            dockResetBtn.BackColor = Color.Transparent;
+            dockResetBtn.BackgroundImage = Properties.Resources.icons8_restart_100;
+            dockResetBtn.BackgroundImageLayout = ImageLayout.Zoom;
+            dockResetBtn.Dock = DockStyle.Left;
+            dockResetBtn.FlatStyle = FlatStyle.Popup;
+            dockResetBtn.Location = new Point(48, 2);
+            dockResetBtn.Margin = new Padding(2);
+            dockResetBtn.Name = "dockResetBtn";
+            dockResetBtn.Size = new Size(42, 38);
+            dockResetBtn.TabIndex = 1;
+            dockResetBtn.UseVisualStyleBackColor = false;
+            dockResetBtn.Click += button3_Click;
+            // 
+            // dockShutdownBtn
+            // 
+            dockShutdownBtn.BackColor = Color.Transparent;
+            dockShutdownBtn.BackgroundImage = Properties.Resources.icons8_shutdown_100;
+            dockShutdownBtn.BackgroundImageLayout = ImageLayout.Zoom;
+            dockShutdownBtn.Dock = DockStyle.Left;
+            dockShutdownBtn.FlatStyle = FlatStyle.Popup;
+            dockShutdownBtn.Location = new Point(2, 2);
+            dockShutdownBtn.Margin = new Padding(2);
+            dockShutdownBtn.Name = "dockShutdownBtn";
+            dockShutdownBtn.Size = new Size(42, 38);
+            dockShutdownBtn.TabIndex = 0;
+            dockShutdownBtn.UseVisualStyleBackColor = false;
+            dockShutdownBtn.Click += button2_Click;
+            // 
+            // DockLeftFlowPnl
+            // 
+            DockLeftFlowPnl.Controls.Add(dockShutdownBtn);
+            DockLeftFlowPnl.Controls.Add(dockResetBtn);
+            DockLeftFlowPnl.Controls.Add(dockRunBtn);
+            DockLeftFlowPnl.Dock = DockStyle.Left;
+            DockLeftFlowPnl.Location = new Point(0, 0);
+            DockLeftFlowPnl.Name = "DockLeftFlowPnl";
+            DockLeftFlowPnl.Size = new Size(292, 46);
+            DockLeftFlowPnl.TabIndex = 4;
+            // 
+            // App2Pnl
+            // 
+            App2Pnl.Controls.Add(App2Category);
+            App2Pnl.Controls.Add(App2Name);
+            App2Pnl.Controls.Add(App2Icon);
+            App2Pnl.Dock = DockStyle.Top;
+            App2Pnl.Location = new Point(2, 114);
+            App2Pnl.Margin = new Padding(2);
+            App2Pnl.Name = "App2Pnl";
+            App2Pnl.Size = new Size(364, 52);
+            App2Pnl.TabIndex = 7;
+            // 
+            // App2Category
+            // 
+            App2Category.Dock = DockStyle.Right;
+            App2Category.Location = new Point(245, 0);
+            App2Category.Margin = new Padding(2, 0, 2, 0);
+            App2Category.Name = "App2Category";
+            App2Category.Size = new Size(119, 52);
+            App2Category.TabIndex = 2;
+            App2Category.Text = "[2]";
+            App2Category.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // App2Name
+            // 
+            App2Name.Dock = DockStyle.Fill;
+            App2Name.Font = new Font("Segoe UI", 16F);
+            App2Name.Location = new Point(42, 0);
+            App2Name.Margin = new Padding(2, 0, 2, 0);
+            App2Name.Name = "App2Name";
+            App2Name.Size = new Size(322, 52);
+            App2Name.TabIndex = 1;
+            App2Name.Text = "[2]";
+            App2Name.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // App2Icon
+            // 
+            App2Icon.Dock = DockStyle.Left;
+            App2Icon.Image = Properties.Resources.icons8_copybook_100;
+            App2Icon.Location = new Point(0, 0);
+            App2Icon.Margin = new Padding(2);
+            App2Icon.Name = "App2Icon";
+            App2Icon.Size = new Size(42, 52);
+            App2Icon.SizeMode = PictureBoxSizeMode.Zoom;
+            App2Icon.TabIndex = 0;
+            App2Icon.TabStop = false;
+            // 
+            // App3Pnl
+            // 
+            App3Pnl.Controls.Add(App3Category);
+            App3Pnl.Controls.Add(App3Name);
+            App3Pnl.Controls.Add(App3Icon);
+            App3Pnl.Dock = DockStyle.Top;
+            App3Pnl.Location = new Point(2, 170);
+            App3Pnl.Margin = new Padding(2);
+            App3Pnl.Name = "App3Pnl";
+            App3Pnl.Size = new Size(364, 52);
+            App3Pnl.TabIndex = 8;
+            // 
+            // App3Category
+            // 
+            App3Category.Dock = DockStyle.Right;
+            App3Category.Location = new Point(245, 0);
+            App3Category.Margin = new Padding(2, 0, 2, 0);
+            App3Category.Name = "App3Category";
+            App3Category.Size = new Size(119, 52);
+            App3Category.TabIndex = 2;
+            App3Category.Text = "[3]";
+            App3Category.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // App3Name
+            // 
+            App3Name.Dock = DockStyle.Fill;
+            App3Name.Font = new Font("Segoe UI", 16F);
+            App3Name.Location = new Point(42, 0);
+            App3Name.Margin = new Padding(2, 0, 2, 0);
+            App3Name.Name = "App3Name";
+            App3Name.Size = new Size(322, 52);
+            App3Name.TabIndex = 1;
+            App3Name.Text = "[3]";
+            App3Name.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // App3Icon
+            // 
+            App3Icon.Dock = DockStyle.Left;
+            App3Icon.Image = Properties.Resources.icons8_copybook_100;
+            App3Icon.Location = new Point(0, 0);
+            App3Icon.Margin = new Padding(2);
+            App3Icon.Name = "App3Icon";
+            App3Icon.Size = new Size(42, 52);
+            App3Icon.SizeMode = PictureBoxSizeMode.Zoom;
+            App3Icon.TabIndex = 0;
+            App3Icon.TabStop = false;
+            // 
+            // App4Pnl
+            // 
+            App4Pnl.Controls.Add(App4Category);
+            App4Pnl.Controls.Add(App4Name);
+            App4Pnl.Controls.Add(App4Icon);
+            App4Pnl.Dock = DockStyle.Top;
+            App4Pnl.Location = new Point(2, 226);
+            App4Pnl.Margin = new Padding(2);
+            App4Pnl.Name = "App4Pnl";
+            App4Pnl.Size = new Size(364, 52);
+            App4Pnl.TabIndex = 9;
+            // 
+            // App4Category
+            // 
+            App4Category.Dock = DockStyle.Right;
+            App4Category.Location = new Point(245, 0);
+            App4Category.Margin = new Padding(2, 0, 2, 0);
+            App4Category.Name = "App4Category";
+            App4Category.Size = new Size(119, 52);
+            App4Category.TabIndex = 2;
+            App4Category.Text = "[4]";
+            App4Category.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // App4Name
+            // 
+            App4Name.Dock = DockStyle.Fill;
+            App4Name.Font = new Font("Segoe UI", 16F);
+            App4Name.Location = new Point(42, 0);
+            App4Name.Margin = new Padding(2, 0, 2, 0);
+            App4Name.Name = "App4Name";
+            App4Name.Size = new Size(322, 52);
+            App4Name.TabIndex = 1;
+            App4Name.Text = "[4]";
+            App4Name.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // App4Icon
+            // 
+            App4Icon.Dock = DockStyle.Left;
+            App4Icon.Image = Properties.Resources.icons8_copybook_100;
+            App4Icon.Location = new Point(0, 0);
+            App4Icon.Margin = new Padding(2);
+            App4Icon.Name = "App4Icon";
+            App4Icon.Size = new Size(42, 52);
+            App4Icon.SizeMode = PictureBoxSizeMode.Zoom;
+            App4Icon.TabIndex = 0;
+            App4Icon.TabStop = false;
+            // 
+            // App5Pnl
+            // 
+            App5Pnl.Controls.Add(App5Category);
+            App5Pnl.Controls.Add(App5Name);
+            App5Pnl.Controls.Add(App5Icon);
+            App5Pnl.Dock = DockStyle.Top;
+            App5Pnl.Location = new Point(2, 282);
+            App5Pnl.Margin = new Padding(2);
+            App5Pnl.Name = "App5Pnl";
+            App5Pnl.Size = new Size(364, 52);
+            App5Pnl.TabIndex = 10;
+            // 
+            // App5Category
+            // 
+            App5Category.Dock = DockStyle.Right;
+            App5Category.Location = new Point(245, 0);
+            App5Category.Margin = new Padding(2, 0, 2, 0);
+            App5Category.Name = "App5Category";
+            App5Category.Size = new Size(119, 52);
+            App5Category.TabIndex = 2;
+            App5Category.Text = "[5]";
+            App5Category.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // App5Name
+            // 
+            App5Name.Dock = DockStyle.Fill;
+            App5Name.Font = new Font("Segoe UI", 16F);
+            App5Name.Location = new Point(42, 0);
+            App5Name.Margin = new Padding(2, 0, 2, 0);
+            App5Name.Name = "App5Name";
+            App5Name.Size = new Size(322, 52);
+            App5Name.TabIndex = 1;
+            App5Name.Text = "[5]";
+            App5Name.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // App5Icon
+            // 
+            App5Icon.Dock = DockStyle.Left;
+            App5Icon.Image = Properties.Resources.icons8_copybook_100;
+            App5Icon.Location = new Point(0, 0);
+            App5Icon.Margin = new Padding(2);
+            App5Icon.Name = "App5Icon";
+            App5Icon.Size = new Size(42, 52);
+            App5Icon.SizeMode = PictureBoxSizeMode.Zoom;
+            App5Icon.TabIndex = 0;
+            App5Icon.TabStop = false;
+            // 
+            // App6Pnl
+            // 
+            App6Pnl.Controls.Add(App6Category);
+            App6Pnl.Controls.Add(App6Name);
+            App6Pnl.Controls.Add(App6Icon);
+            App6Pnl.Dock = DockStyle.Top;
+            App6Pnl.Location = new Point(2, 338);
+            App6Pnl.Margin = new Padding(2);
+            App6Pnl.Name = "App6Pnl";
+            App6Pnl.Size = new Size(364, 52);
+            App6Pnl.TabIndex = 11;
+            // 
+            // App6Category
+            // 
+            App6Category.Dock = DockStyle.Right;
+            App6Category.Location = new Point(245, 0);
+            App6Category.Margin = new Padding(2, 0, 2, 0);
+            App6Category.Name = "App6Category";
+            App6Category.Size = new Size(119, 52);
+            App6Category.TabIndex = 2;
+            App6Category.Text = "[6]";
+            App6Category.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // App6Name
+            // 
+            App6Name.Dock = DockStyle.Fill;
+            App6Name.Font = new Font("Segoe UI", 16F);
+            App6Name.Location = new Point(42, 0);
+            App6Name.Margin = new Padding(2, 0, 2, 0);
+            App6Name.Name = "App6Name";
+            App6Name.Size = new Size(322, 52);
+            App6Name.TabIndex = 1;
+            App6Name.Text = "[6]";
+            App6Name.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // App6Icon
+            // 
+            App6Icon.Dock = DockStyle.Left;
+            App6Icon.Image = Properties.Resources.icons8_copybook_100;
+            App6Icon.Location = new Point(0, 0);
+            App6Icon.Margin = new Padding(2);
+            App6Icon.Name = "App6Icon";
+            App6Icon.Size = new Size(42, 52);
+            App6Icon.SizeMode = PictureBoxSizeMode.Zoom;
+            App6Icon.TabIndex = 0;
+            App6Icon.TabStop = false;
+            // 
+            // App7Pnl
+            // 
+            App7Pnl.Controls.Add(App7Category);
+            App7Pnl.Controls.Add(App7Name);
+            App7Pnl.Controls.Add(App7Icon);
+            App7Pnl.Dock = DockStyle.Top;
+            App7Pnl.Location = new Point(2, 394);
+            App7Pnl.Margin = new Padding(2);
+            App7Pnl.Name = "App7Pnl";
+            App7Pnl.Size = new Size(364, 52);
+            App7Pnl.TabIndex = 12;
+            // 
+            // App7Category
+            // 
+            App7Category.Dock = DockStyle.Right;
+            App7Category.Location = new Point(245, 0);
+            App7Category.Margin = new Padding(2, 0, 2, 0);
+            App7Category.Name = "App7Category";
+            App7Category.Size = new Size(119, 52);
+            App7Category.TabIndex = 2;
+            App7Category.Text = "[7]";
+            App7Category.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // App7Name
+            // 
+            App7Name.Dock = DockStyle.Fill;
+            App7Name.Font = new Font("Segoe UI", 16F);
+            App7Name.Location = new Point(42, 0);
+            App7Name.Margin = new Padding(2, 0, 2, 0);
+            App7Name.Name = "App7Name";
+            App7Name.Size = new Size(322, 52);
+            App7Name.TabIndex = 1;
+            App7Name.Text = "[7]";
+            App7Name.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // App7Icon
+            // 
+            App7Icon.Dock = DockStyle.Left;
+            App7Icon.Image = Properties.Resources.icons8_copybook_100;
+            App7Icon.Location = new Point(0, 0);
+            App7Icon.Margin = new Padding(2);
+            App7Icon.Name = "App7Icon";
+            App7Icon.Size = new Size(42, 52);
+            App7Icon.SizeMode = PictureBoxSizeMode.Zoom;
+            App7Icon.TabIndex = 0;
+            App7Icon.TabStop = false;
             // 
             // sm
             // 
-            AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.None;
             BackColor = SystemColors.ControlText;
             ClientSize = new Size(378, 498);
-            Controls.Add(panel2);
+            Controls.Add(BasePanel);
             Font = new Font("Segoe UI Variable Display", 12F);
             ForeColor = SystemColors.Control;
             FormBorderStyle = FormBorderStyle.None;
@@ -562,76 +601,79 @@
             Text = "sm";
             Deactivate += sm_Deactivate;
             Load += sm_Load;
-            panel2.ResumeLayout(false);
-            flowLayoutPanel1.ResumeLayout(false);
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dnnaviPic).EndInit();
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dnnotPic).EndInit();
-            panel6.ResumeLayout(false);
-            panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dnupdPic).EndInit();
-            panel7.ResumeLayout(false);
-            panel7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)ie11minPic).EndInit();
-            panel8.ResumeLayout(false);
-            panel8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)calendarPic).EndInit();
-            panel9.ResumeLayout(false);
-            panel9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)termPic).EndInit();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)filesPic).EndInit();
-            panel10.ResumeLayout(false);
-            panel10.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)recipPic).EndInit();
-            panel11.ResumeLayout(false);
+            BasePanel.ResumeLayout(false);
+            AppsFlowPnl.ResumeLayout(false);
+            App0Pnl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)App0Icon).EndInit();
+            App1Pnl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)App1Icon).EndInit();
+            DockPnl.ResumeLayout(false);
+            DockLeftFlowPnl.ResumeLayout(false);
+            App2Pnl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)App2Icon).EndInit();
+            App3Pnl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)App3Icon).EndInit();
+            App4Pnl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)App4Icon).EndInit();
+            App5Pnl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)App5Icon).EndInit();
+            App6Pnl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)App6Icon).EndInit();
+            App7Pnl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)App7Icon).EndInit();
             ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label dnn;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.PictureBox dnnaviPic;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Label dnno;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.PictureBox dnnotPic;
-        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel BasePanel;
+        private System.Windows.Forms.FlowLayoutPanel AppsFlowPnl;
+        private System.Windows.Forms.Panel App0Pnl;
+        private System.Windows.Forms.Label App0Category;
+        private System.Windows.Forms.Label App0Name;
+        private System.Windows.Forms.PictureBox App0Icon;
+        private System.Windows.Forms.Panel App1Pnl;
+        private System.Windows.Forms.Label App1Category;
+        private System.Windows.Forms.Label App1Name;
+        private System.Windows.Forms.PictureBox App1Icon;
         private System.Windows.Forms.Label dnu;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox dnupdPic;
-        private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Label ie;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.PictureBox ie11minPic;
-        private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Label cio;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.PictureBox calendarPic;
-        private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Label term;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.PictureBox termPic;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label def;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox filesPic;
-        private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.Label rec;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.PictureBox recipPic;
-        private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Panel DockPnl;
+        private System.Windows.Forms.Button dockrightR2Wbtn;
+        private System.Windows.Forms.Button dockResetBtn;
+        private System.Windows.Forms.Button dockShutdownBtn;
+        private Button dockRunBtn;
+        private FlowLayoutPanel DockLeftFlowPnl;
+        private Panel App2Pnl;
+        private Label App2Category;
+        private Label App2Name;
+        private PictureBox App2Icon;
+        private Panel App3Pnl;
+        private Label App3Category;
+        private Label App3Name;
+        private PictureBox App3Icon;
+        private Panel App4Pnl;
+        private Label App4Category;
+        private Label App4Name;
+        private PictureBox App4Icon;
+        private Panel App5Pnl;
+        private Label App5Category;
+        private Label App5Name;
+        private PictureBox App5Icon;
+        private Panel App6Pnl;
+        private Label App6Category;
+        private Label App6Name;
+        private PictureBox App6Icon;
+        private Panel App7Pnl;
+        private Label App7Category;
+        private Label App7Name;
+        private PictureBox App7Icon;
     }
 }
