@@ -16,12 +16,58 @@ namespace deneOS
             };
 
         public static bool showBoot = false;
+        static void ConfirmSMConfig()
+        {
+            if (!IsSMSetUp())
+                ImportSMDefaults();
+        }
+        static bool IsSMSetUp()
+        {
+            string regKeyPath = @"HKEY_CURRENT_USER\Software\deneOS\startmenu";
+            object? categories = Microsoft.Win32.Registry.GetValue(regKeyPath, "EntriesCategories", null);
+            object? paths = Microsoft.Win32.Registry.GetValue(regKeyPath, "EntriesPaths", null);
+            object? r2wbutton = Microsoft.Win32.Registry.GetValue(regKeyPath, "showR2WButton", null);
+            return categories != null && paths != null && r2wbutton != null;
+        }
+        static void ImportSMDefaults()
+        {
+            string tempFile = Path.Combine(
+        Path.GetTempPath(),
+        $"deneOS_{Guid.NewGuid()}.reg"
+    );
+
+            try
+            {
+                File.WriteAllBytes(tempFile, Properties.Resources.SMDefaults);
+
+                using (Process process = Process.Start(new ProcessStartInfo
+                {
+                    FileName = "regedit.exe",
+                    Arguments = $"/s \"{tempFile}\"",
+                    UseShellExecute = true,
+                    WindowStyle = ProcessWindowStyle.Hidden
+                }))
+                {
+                    process?.WaitForExit();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al importar el registro:\n{ex.Message}");
+            }
+            finally
+            {
+                if (File.Exists(tempFile))
+                    File.Delete(tempFile);
+            }
+        }
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main(string[] args)
         {
+            ConfirmSMConfig();
             adminMgmt.args = args;
             adminMgmt.argsCount = args.Length;
             Arguments();
