@@ -234,8 +234,9 @@ namespace deneOS
         void UpdateBattery()
         {
             PowerStatus status = SystemInformation.PowerStatus;
-            float getBattery = status.BatteryLifePercent * 100;
-            label21.Text = !flagMgmt.MockBattery ? $"{getBattery}%" : "100%";
+            float getBattery = status.BatteryLifePercent * 100f;
+            string formatted = $"{MathF.Round(getBattery):0}%";
+            label21.Text = !flagMgmt.MockBattery ? formatted : "100%";
             BatteryChargeStatus chargeStatus = status.BatteryChargeStatus;
             PowerLineStatus powerLineStatus = status.PowerLineStatus;
             bool isCharging = chargeStatus.HasFlag(BatteryChargeStatus.Charging);
