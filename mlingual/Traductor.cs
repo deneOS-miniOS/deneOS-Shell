@@ -42,38 +42,6 @@ public static class Traductor
             traducciones = new Dictionary<string, object>();
         }
     }
-    static bool NeedsUpdate(string localPath, string remoteUrl)
-    {
-        try
-        {
-            Ping ping = new();
-            IPAddress google = new([142, 250, 184, 14]);
-            var reply = ping.Send(google);
-            if (!(reply.Status == IPStatus.Success))
-            {
-                Console.WriteLine("[ERROR] No Internet Connection.", "deneOS", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                return false;
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("ERROR: No Internet Connection.", "deneOS", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-            return false;
-        }
-
-        string remoteContent = null;
-        using (HttpClient client = new())
-        {
-            remoteContent = client.GetStringAsync(remoteUrl).GetAwaiter().GetResult();
-        }
-        var localContent = File.ReadAllText(localPath);
-        return remoteContent != localContent;
-    }
-
-    /*public static string T(string clave)
-    {
-        return traducciones.TryGetValue(clave, out var valor) ? valor : $"[{clave}]";
-    }*/
     public static object T(string clave)
     {
         if (UN_ST)
@@ -104,8 +72,6 @@ public static class Traductor
                         return jsonElement.ToString();
                 }
             }
-
-            // Si ya es un tipo primitivo (bool, int, string)
             return valor;
         }
 
